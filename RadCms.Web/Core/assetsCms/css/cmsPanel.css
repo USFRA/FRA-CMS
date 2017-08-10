@@ -1,0 +1,85 @@
+﻿#cmsHomeNotifications{
+    position: fixed;
+    right: 0px;
+    top: 0px;
+}
+#cmsHomeMenu {
+    background-color: #DDDDDD;
+    width: 150px;
+    height: 700px;
+    float: left;
+    border-right: 1px solid #888888;
+}
+#cmsHomeMenu ul {
+    float: right;
+    list-style: none;
+    text-align: center;
+    margin: -1px -1px 0 0;
+    padding: 25px 0 0;
+}
+        
+#cmsHomeMenu ul li {
+    padding-top: 10px;
+    box-sizing: border-box;
+    display: block;
+    width: 125px;
+    height: 105px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent #888888 transparent transparent;
+    cursor: pointer;
+}
+        
+#cmsHomeMenu ul li.cms-state-active {
+    border-color: #888888 transparent #888888 #888888;
+    background-color: #F8F8F9;
+}
+#cmsHomeMenu ul li span {
+    display: block;
+    font-family: Open Sans Condensed;
+    font-weight: bold;
+    line-height: 2em;
+    margin: 0 auto;
+    color: #515967;
+    font-size: 1.2em;
+}
+#cmsHomeMenu ul li span.cms-panel {
+}
+#cmsHomeContent {
+    margin-left: 150px;
+    width: 850px;
+    height: 700px;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    background-color: #F8F8F9;
+    font-family: Arial;
+}
+#cmsHomeContent > div {
+    display: none;
+}
+#cmsHomeContent > div.cms-state-active {
+    display: block;
+}
+#cmsHomeContent .cms-panel-header {
+    height: 65px;
+}
+#cmsHomeContent .cms-panel-header span.cms-panel-title {
+    font-size: 2.3em;
+    font-family: 'Open Sans Condensed' , Sans-Serif;
+    color: #515967;
+    display: block;
+    border-bottom: 1px solid #888888;
+}
+#cmsHomeContent .tabstrip .k-content{
+    height: 541px;
+    padding: 0.92em;
+}
+.tabstrip {
+    border: none;
+}
+#cmsHomeContent .k-tabstrip .k-tabstrip-items{
+    padding: 0;
+}
+#cmsHomeContent .k-tabstrip > .k-content{
+    margin: 0;
+}

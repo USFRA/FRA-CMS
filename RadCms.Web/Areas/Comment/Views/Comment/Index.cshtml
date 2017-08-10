@@ -1,0 +1,166 @@
+﻿@model IEnumerable<RadCms.Web.Areas.Comment.Models.PageComment>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+
+@section header{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.statusSelection').change(function () {
+                var id = $(this).attr('id');
+                var status = $(this).val();
+                $.ajax({
+                    url: '/Comment/Comment/UpdateStatus',
+                    type: 'POST',
+                    async: true,
+                    data: JSON.stringify({ id: id, status: status }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.Status == "Success") {
+                        }
+                    }
+                })
+            })
+
+            $('.filter').change(function () {
+                var page = $('#titleFilter').val();
+                var status = $('#statusFilter').val();
+                var url;
+                if (page && status) {
+                    url = "/Comment/Comment/Index?page=" + page + "&status=" + status;
+                }
+                else if (page || status) {
+                    url = "/Comment/Comment/Index?" + (page ? ("page=" + page) : "") + (status ? ("status=" + status) : "");
+                }
+                else {
+                    url = "/Comment/Comment/Index";
+                }
+                window.location.href = url;
+            })
+        })
+        
+    </script>
+}
+
+<h2>
+    Comments Review</h2>
+
+@using (Html.BeginForm("Index", "Comment", new { area = "RadCms.Comment" }, FormMethod.Get, new { id = "TheForm" }))
+{
+    <table>
+        <tr>
+            <th>
+              Comments for: 
+            </th>
+            <td>
+            @Html.DropDownList("titleFilter",
+                        new SelectList(
+                            ViewBag.TitleList,
+                            "Key",
+                            "Value",
+                            ViewBag.Page == -1 ? "ALL" : ViewBag.Page
+                        ),
+                        new
+                        {
+                            id = "titleFilter",
+                            @class = "filter"
+                        }
+                    )
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Comments Status:
+            </th>
+            <td>
+            @Html.DropDownList("statusFilter",
+                        new SelectList(
+                            ViewBag.StatusList,
+                            "Value",
+                            "Key",
+                            ViewBag.Status
+                        ),
+                        new
+                        {
+                            id = "statusFilter",
+                            @class = "filter"
+                        }
+                    )
+            </td>
+        </tr>
+    </table>
+    <br />
+    if (Model.Count() == 0)
+    { 
+        <p>No Comments.</p>
+    }
+    else
+    {
+        ViewBag.StatusList.Remove("ALL");
+        <table>
+            <tr>
+                <th>
+                    Page
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Comment
+                </th>
+                <th>
+                    Original Comment
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                </th>
+            </tr>
+        
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @*@(ViewBag.TitleList.ContainsKey(item.PageId) ? Html.Raw("<a href=\"/Page/"+item.PageId+"\" target=\"_blank\">" + ViewBag.TitleList[item.PageId] + "</a>") : "DELETED")*@
+                        <a href="/@item.Page.Url" target="_blank" title="@item.Page.Title">@item.Page.Title</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment.Email)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Comment.Content)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Comment.OrigContent)
+                    </td>
+                    <td>
+                        @Html.DropDownList("itemStatus" + item.Comment.Id,
+                            new SelectList(
+                                ViewBag.StatusList,
+                                "Value",
+                                "Key",
+                             item.Comment.Status
+                            ),
+                            new
+                            {
+                                id = item.Comment.Id,
+                                @class = "statusSelection"
+                            }
+                        )
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Comment.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    }    
+}

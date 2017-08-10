@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Permission";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+<div class="portletOne">
+    <h2>
+        Permissions</h2>
+    @if (ViewBag.Permissions == null)
+    { 
+        <p>
+            None
+        </p>
+    }
+    else
+    { 
+        <table id="permission" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>
+                        User Active ID
+                    </th>
+                    <th>
+                        Permission
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (KeyValuePair<string, string> model in ViewBag.Permissions)
+                {     
+                    <tr>
+                        <td>
+                            @(model.Key)
+                        </td>
+                        <td>
+                            @(model.Value)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    
+    }
+    <div style="clear: both">
+    </div>
+</div>
+<div class="portletOne">
+    <input type="button" onclick="history.go(-1)" value="Go Back" />
+</div>

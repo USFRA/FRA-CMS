@@ -1,0 +1,26 @@
+﻿@model RadCms.Entities.NaviNode
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Core/Views/Shared/_LayoutEditPanel.cshtml";        
+}
+<fieldset>
+    <legend>NaviNode:</legend>
+    <div class="display-label">
+        Parent</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parent.NodeName)
+    </div>
+    <div class="display-label">
+        Name:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NodeName)
+    </div>
+    <div class="display-label">
+        Default Page</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DefaultPageId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "EditPanel", new { id = Model.Id })
+</p>

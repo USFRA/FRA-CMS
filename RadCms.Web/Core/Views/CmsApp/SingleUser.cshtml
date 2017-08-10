@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "User";
+    
+}
+@section header{
+    <style id="style">
+        li{
+            list-style: none;
+        }
+    </style>
+}
+<h2>
+    User: @ViewBag.UserName</h2>
+
+<h3>Pages Created</h3>
+@if (ViewBag.CreatePages.Count == 0)
+{
+    <text>None</text>
+}
+else
+{
+    <ul title="Pages Created">
+        @foreach (var cp in ViewBag.CreatePages)
+        {
+            <li>
+                @cp
+            </li>
+        }
+    </ul>
+}
+<h3>Pages Published</h3>
+@if (ViewBag.PublishPages.Count == 0)
+{
+    <text>None</text>
+}
+else
+{
+    <ul title="Pages Published">
+        @foreach (var pp in ViewBag.PublishPages)
+        {
+            <li>
+                @pp
+            </li>
+        }
+    </ul>
+}
+
+@*<h3>Libraries Created</h3>
+@if (ViewBag.CreateLibs.Count == 0)
+{
+    <text>None</text>
+}
+else
+{
+    <ul title="Libraries Created">
+        @foreach (var cl in ViewBag.CreateLibs)
+        {
+            <li>
+                @cl
+            </li>
+        }
+    </ul>
+}
+<h3>Libraries Published</h3>
+@if (ViewBag.PublishLibs.Count == 0)
+{
+    <text>None</text>
+}
+else
+{
+    <ul title="Libraries Published">
+        @foreach (var pl in ViewBag.PublishLibs)
+        {
+            <li>
+                @pl
+            </li>
+        }
+    </ul>
+}*@
+<input type="button" class="k-button" value="Go Back" onclick="history.go(-1)" />

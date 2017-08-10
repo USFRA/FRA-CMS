@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Page History";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";      
+}
+
+@section header{
+    <style type="text/css">
+        a.newitem
+        {
+            background-image: url('~/Core/assetsCms/images/newitem.gif');
+            background-repeat: no-repeat;
+            padding-left: 20px;
+        }
+        
+        .sectionToolbar a.reorder
+        {
+            background-image: url('~/Core/assetsCms/images/reorder.gif');
+            background-repeat: no-repeat;
+            padding-left: 20px;
+        }
+        
+        #historyTable
+        {
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        var pageId = @ViewData["PageId"];
+    </script>
+<link rel="stylesheet" type="text/css" href="~/Core/Content/datatables/datatables.min.css" />
+
+<script type="text/javascript" src="~/Core/Content/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="~/Core/Content/moment/moment.min.js"></script>
+    @Scripts.Render("~/Core/scripts/cms/cms-manage-history.js")
+}
+
+<table id="historyGrid" >
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date Published</th>
+            <th>Published By</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Date Published</th>
+            <th>Published By</th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+<div id="noHistory" style="display: none;">
+    <p>
+        Current page does not have any history version.
+    </p>
+</div>

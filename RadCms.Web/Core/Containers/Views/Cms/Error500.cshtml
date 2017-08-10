@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Something went wrong!";
+    Layout = "~/Core/Views/Shared/_LayoutGlobalNew.cshtml";
+}
+@section header{
+    <link href="/webparts/contact/contact.css" rel="Stylesheet" type="text/css" />
+    <style type="text/css">
+        body
+        {
+            background-image: url("/Core/assets/images/errorBack.gif");
+            background-repeat: repeat-x;
+            background-color: #000;
+        }
+        
+        #errorImage
+        {
+            padding: 7px 10px 0px 10px;
+            text-align: center;
+        }
+
+    </style>
+}
+<div id="contentWrapper">
+    <div id="errorImage">
+        <img src="/Core/assets/images/errorMessage.jpg"  alt="Server Error. Email @(CmsHelper.SupportEmail)."/>
+    </div>
+</div>

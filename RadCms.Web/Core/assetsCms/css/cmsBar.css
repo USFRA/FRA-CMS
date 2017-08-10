@@ -1,0 +1,159 @@
+#cmsActionBar
+{
+    background-color: #436ea0;
+}
+#cmsHeaderPanel
+{
+    top: 0px;
+    position:fixed;
+    width: 100%;
+    z-index:1000;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+#cmsStatusBar
+{
+    background-color: #dddddd;
+    opacity: 0.93;
+    text-align:center;
+-webkit-box-shadow: inset 0px 4px 4px -4px rgba(68,68,68,0.6);
+-moz-box-shadow: inset 0px 4px 4px -4px rgba(68,68,68,0.6);
+box-shadow: inset 0px 4px 4px -4px rgba(68,68,68,0.6);
+}
+
+#cmsStatusBar img
+{
+    padding-right: 10px;
+}
+
+#cmsLogo
+{
+    float: right;
+    height: 28px;
+    width: 128px;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+#cmsActionContent
+{
+    min-width: 700px;
+    padding: 8px 10px;
+}
+
+#cmsStatusContent
+{
+    box-shadow: 0 0 3px gray;
+    min-width: 1024px;
+    text-align:left;
+    padding: 0px 16px;
+}
+
+#cmsStatusContent img 
+{
+    vertical-align:top;   
+}
+
+#leftToolBar>a, #rightToolBar>a{
+    margin: 0 8px;
+}
+
+#leftActionBar img
+{
+    padding-right: 10px;
+}
+
+#leftActionBar
+{
+    float:left; 
+}
+
+#leftActionBar img
+{
+    padding-right: 5px;
+    vertical-align:top;
+}
+
+#rightActionBar 
+{
+    float:right;
+}
+
+#bodyWrapper 
+{
+    padding-top:90px;
+}
+
+#leftActionBar label
+{
+    color:White;    
+}
+
+.webpartCover 
+{
+    background-image:url("../images/webPartBackground.png");
+    background-repeat:repeat;
+    background-color: #AAAAAA;
+    opacity: 0.9;
+}
+
+.webpartCover img
+{
+    position:absolute;
+    margin-left:-58px;
+    margin-top:-18px;
+    top:50%;  
+    left:50%;    
+}
+
+#PageStatusIcon
+{
+    cursor:pointer;
+}
+
+.cms-edit-message
+{
+    padding: 0 5px;
+    color: #5D5D5D;
+}
+.cms-edit-message.message-state-red{
+    color: #D83500;
+}
+.cms-edit-message.message-state-yellow{
+    color: #8C4600;
+}
+.cms-edit-message.message-state-green{
+    color: #1A6600;
+}
+.cms-edit-message.message-state-grey{
+    color: #8E8E8E;
+}
+.cms-message
+{
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+.cms-horizontal-divider
+{
+    background-color: #CCCCCC;
+    display: inline-block;
+    height: 2em;
+    margin: 0 10px;
+    vertical-align: middle;
+    width: 1px;
+}
+
+#cmsHeaderPanel .k-toolbar
+{
+    border-color: transparent;
+    background: none;
+}
+
+/* ie fix */
+#statusToolBar>div{
+    display: inline;
+}
+#statusToolBar>div>.cms-status,
+#statusToolBar>div>.cms-icon{
+    margin-top:-4px;
+}

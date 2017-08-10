@@ -1,0 +1,67 @@
+﻿@model RadCms.Entities.PageLayout
+
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+
+@Styles.Render("~/kendo/css", "~/Areas/Template/assets/editor.css")
+@Scripts.Render("~/bundles/jqueryval", "~/Areas/Template/Scripts/behave.js", "~/Areas/Template/Scripts/editor.js")
+<div class="k-block fieldlist">
+    <div class="k-header">
+        Layout: @Model.Title
+    </div>
+    <div class="block-body">
+        @using (Html.BeginForm("edit", "layoutcms", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Order)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Order)
+                @Html.ValidationMessageFor(model => model.Order)
+            </div>
+            <div class="editor-label">
+                <label for="ImageFile">Image</label>
+            </div>
+            <div class="editor-field">
+                <input name="ImageFile" type="file" />
+                @Html.ValidationMessageFor(model => model.Image)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Style)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Style)
+                @Html.ValidationMessageFor(model => model.Style)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Template)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Template)
+                @Html.ValidationMessageFor(model => model.Template)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.IsVisible)
+                @Html.ValidationMessageFor(model => model.IsVisible)
+            </div>
+            <p>
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "k-button" })
+                <input type="submit" class="k-button" value="Save" />
+            </p>
+        }
+    </div>
+</div>

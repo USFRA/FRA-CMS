@@ -1,0 +1,88 @@
+﻿@model RadCms.Core.Containers.Models.EditPageModel
+@using RadCms.Helpers
+@using RadCms.Entities
+@{
+    ViewBag.Title = "Create Page";
+    Layout = "~/Core/Views/Shared/_LayoutGlobalNew.cshtml";
+    bool isSuperUser = RadCms.Security.SecurityHelper.IsSuperUser();
+    bool isAdmin = RadCms.Security.SecurityHelper.IsAdmin();
+    ViewData["IsAdmin"] = isAdmin;
+    ViewData["ViewState"] = "CREATE";
+    var actionViewModel = new RadCms.Core.Containers.Models.ActionBarModel
+    {
+        IsPublished = false,
+        Status = RadCms.Entities.CmsPage.STATUS_EDITING_START,
+        SectionId = ViewBag.NaviNode.Id,
+        ReturnUrl = ViewBag.ReturnUrl,
+        ModifiedBy = HttpContext.Current.User.Identity.Name,
+        LastModified = DateTime.Now,
+        AccessMode = ViewBag.AccessMode ?? PermissionType.Denied,
+    };
+}
+@section header{
+    <link href="@Url.Content("~/layout/styles/" + Model.Layout)" type="text/css" rel="Stylesheet" />
+    <link href="@Url.Content("~/Core/assetsCms/css/pageEditor.css")" rel="stylesheet" type="text/css" />
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Core/assetsCms/tinymce/tinymce.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Core/Scripts/editor/cms-editor.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var sectionId = "@(ViewBag.NaviNode.Id)";
+        $(document).ready(function () {
+            if ($('#isCreateNewSection').is(":checked")) {
+                $('#newSectionMetaData').show();
+            }
+
+            $('#isCreateNewSection').change(function () {
+                if (this.checked) {
+                    $('#newSectionMetaData').show();
+                }
+                else {
+                    $('#newSectionMetaData').hide();
+                }
+            });
+
+        });
+    </script>
+    <style type="text/css">
+        @Html.BackgroundStyle(Model.Status)
+        .header-container{
+            background-position: 0 268px;
+        }
+        #headerTop{
+            margin-top: 268px;
+        }
+        #newSectionMetaData{
+            display: none;
+        }
+        .field-validation-error{
+            display: inline;
+        }
+    </style>
+    @if (!isAdmin)
+    {  
+        <style type="text/css">
+            #rightMetaData, #leftMetaData{
+                width: 49%;
+            }
+        </style>
+    }
+
+    @Html.Raw(ViewBag.WebpartHeaders)
+}
+@section leftActionBar{
+    @Html.Partial("_LeftEditBarPartial", actionViewModel)
+}
+@section rightActionBar{
+}
+@section statusBar{
+    @Html.Partial("_MessageBarPartial", actionViewModel)
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    @Html.Partial("_EditFormPartial", Model, ViewData)
+    <p style="display: none">
+        <input type="submit" id="submitChange" value="Save" />
+    </p>
+}

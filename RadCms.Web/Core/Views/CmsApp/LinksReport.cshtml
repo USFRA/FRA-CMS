@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "LinksReport";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+
+<h2>Links to Old Site</h2>
+<ul>
+@foreach (var model in ViewBag.Old as List<RadCms.Entities.CmsPage>)
+{ 
+    <li>
+       <a href="/Page/@(model.FriendlyId)" target="_blank">@(model.Title)</a>
+    </li>
+}
+</ul>
+<h2>All Broken Links</h2>
+<ul>
+@foreach (var model in ViewBag.Inners as List<RadCms.Entities.CmsPage>)
+{ 
+    <li>
+       <a href="/Page/@(model.FriendlyId)" target="_blank">@(model.Title)</a>
+    </li>
+}
+</ul>

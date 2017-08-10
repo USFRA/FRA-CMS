@@ -1,0 +1,57 @@
+﻿@model RadCms.Web.Areas.Comment.Entities.Comment
+@{
+    ViewBag.Title = "Comment Received";
+    Layout = "~/Core/Views/Shared/_LayoutGlobalNew.cshtml";
+}
+@section header{
+    <link href="/Areas/Comment/assets/CommentConfirmation.css" rel="Stylesheet" type="text/css">
+}
+<div id="contentWrapper">
+<p>&nbsp</p>
+    <div class="content" id="content">
+
+        <p>
+            <strong>Comment Received</strong></p>
+        <p>
+            Thank you. The following information has been received.</p>
+        <table class="datatable">
+            <tr class="rowblue">
+                <td scope="row">
+                    <strong>Name</strong>:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Email</strong>:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Email)
+                </td>
+            </tr>
+            <tr class="rowblue">
+                <td>
+                    <strong>Date Received</strong>:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Created)
+                </td>
+            </tr>
+            <tr>
+                <td scope="row">
+                    <strong>Comment</strong>:
+                </td>
+                <td id="comment">
+                    @*@Html.FormtComment(Model.Content)*@
+                    @Html.Raw(Model.Content)
+                </td>
+            </tr>
+        </table>
+        <p>
+            <em>Please note that the comments will not be available for immediate viewing on the
+                web site.</em></p>
+        <p><a href="@ViewBag.ReturnUrl" title="Go back" target="_self">Go back to blog</a></p>
+    </div>
+</div>

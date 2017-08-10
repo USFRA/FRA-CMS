@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "error";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+
+<h2>error</h2>
+@if (ViewBag.Message != null)
+{
+    <p>
+    @ViewBag.Message
+    </p>
+}
+else { 
+    <p>
+    Failed to grant permission.
+    </p>
+}

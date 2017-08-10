@@ -1,0 +1,54 @@
+﻿@model RadCms.Core.Containers.Models.EditNaviLinkModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";     
+}
+@using RadCms.Helpers
+@if (@ViewBag.NaviNode.Parent != null)
+{    
+    <div>@Html.ActionBreadcrumbCms((RadCms.Entities.NaviNode)@ViewBag.NaviNode)
+    </div>
+}
+<p>
+</p>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Edit Right Bar Link</legend>
+        @Html.HiddenFor(model => model.Id)
+        <div class="editor-label">
+           Heading
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.NaviHeadingId, (IEnumerable<SelectListItem>)ViewBag.Headings)
+            @Html.ValidationMessageFor(model => model.NaviHeadingId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LinkOrder)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LinkOrder)
+            @Html.ValidationMessageFor(model => model.LinkOrder)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Url)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Url)
+            @Html.ValidationMessageFor(model => model.Url)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+            |
+            @Html.ActionLink("Back to Section", "Navi", "Section", new { id = @ViewBag.NaviNode.Id }, null)
+        </p>
+    </fieldset>
+}

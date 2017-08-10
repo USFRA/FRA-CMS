@@ -1,0 +1,170 @@
+﻿body {
+    font-family: 'Muli', Arial;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Muli', Arial;
+}
+
+article h1 {
+    font-size: 2.6em;
+    line-height: 1em;
+    font-weight: lighter;
+}
+
+article h2 {
+    font-size: 1.2em;
+    line-height: 1em;
+    font-weight: normal;
+}
+
+figure.green-border {
+    border-color: #009fd7;
+}
+
+#logo {
+    position: relative;
+    margin: 0;
+}
+
+.header-container header {
+    padding: 20px 0;
+}
+
+.header-border {
+    background-image: none;
+    border-bottom: none;
+}
+
+#headerTop {
+    background-image: url('../images/quickStopBar.jpg');
+    height: 35px;
+}
+
+#headerTop .wrapper {
+    position: relative;
+}
+
+#quickStop {
+    font-family: 'Open Sans Condensed';
+    font-size: 1.2em;
+}
+
+#quickStop span {
+    display: inline-block;
+    padding-left: 20px;
+    margin-right: 25px;
+    background-image: url('../images/quickStopIcn.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 35px;
+    line-height: 35px;
+    font-weight: bold;
+    color: #AEAEAE;
+    font-style: italic;
+}
+
+#quickStop a {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #878787;
+    text-decoration: none;
+}
+
+#navGroup {
+    position: absolute;
+    right: 0px;
+    top: 58px;
+}
+
+#navGroup a {
+    display: inline-block;
+    padding-top: 50px;
+    width: 60px;
+    text-align: center;
+    margin-left: 25px;
+    font-family: 'Open Sans Condensed';
+    font-size: 1.2em;
+    color: #545454;
+    background-repeat: no-repeat;
+    background-position: top center;
+    text-decoration: none;
+}
+
+#navGroup a.home {
+    background-image: url('../images/iconNavHome.png');
+}
+
+#navGroup a.home:hover,
+#navGroup a.home.selected {
+    background-image: url('../images/iconNavHome2.png');
+}
+
+#navGroup a.sitemap {
+    background-image: url('../images/iconNavSitemap.png');
+}
+
+#navGroup a.sitemap:hover,
+#navGroup a.sitemap.selected {
+    background-image: url('../images/iconNavSitemap2.png');
+}
+
+#navGroup a.apps {
+    background-image: url('../images/iconNavApps.png');
+}
+
+#navGroup a.apps:hover,
+#navGroup a.apps.selected {
+    background-image: url('../images/iconNavApps2.png');
+}
+
+#searhContainer {
+    height: 0px;
+}
+
+#search {
+    margin-top: -40px;
+    width: 225px;
+    height: 21px !important;
+    background-image: url('../images/iconTopSearch.png');
+    border: 1px solid rgba(204, 204, 204, 0.55);
+    transition: width .25s;
+}
+
+#search:focus {
+    width: calc(100% - 410px);
+}
+
+.header-border {
+    height: auto;
+    background-image: url('../images/backLogoWaves.png');
+    background-repeat: no-repeat;
+    background-color: #efefef;
+}
+
+nav > ul > li {
+    height: 76px;
+}
+
+.footer-container {
+    border-top: 10px solid #023873;
+    background-color: #000;
+    background-image: url(../images/mainNavBar.png);
+}
+
+@media only screen and (min-width: 768px) {
+    nav a {
+        height: 76px;
+        line-height: 76px;
+        font-size: 2em;
+        font-family: Open Sans Condensed;
+    }
+
+    nav a:hover {
+        color: #009EDF;
+    }
+}

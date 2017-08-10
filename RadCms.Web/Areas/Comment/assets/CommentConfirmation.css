@@ -1,0 +1,37 @@
+﻿#contentWrapper
+{
+    text-align:center;
+}
+
+.content
+{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:100%;
+    display:inline-table;
+    text-align:left;
+}
+
+#comment
+{
+    width: 365px;
+}
+        
+.content table.datatable td
+{
+    border: 1px solid #aaa;
+    vertical-align:text-top;
+    padding:5px 3px 5px 3px;
+}
+
+.content table.datatable
+{
+    border-collapse: collapse;
+    border: 1px solid #aaa;
+    margin: 12px auto 12px 0;
+}
+  
+
+.rowblue
+{
+    background-color: #ddeeff;
+}

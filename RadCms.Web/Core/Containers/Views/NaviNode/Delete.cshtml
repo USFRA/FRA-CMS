@@ -1,0 +1,53 @@
+﻿@model RadCms.Entities.NaviNode
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";       
+}
+@using RadCms.Helpers
+
+    @if (Model.Parent != null)
+    {    
+        <div>@Html.ActionBreadcrumbCms(Model.Parent)
+        </div>
+    }
+
+<h3>
+    Are you sure you want to delete this section?</h3>
+<fieldset>
+    <legend>Sub Section</legend>
+    <p>
+        <span class="display-label">
+            Section Name: </span>
+        <span class="display-field">
+            @Html.DisplayFor(model => model.NodeName)
+        </span>
+    </p>
+    <div>
+        <span class="display-label">Created By: </span><span class="display-field">
+            @Html.DisplayFor(model => model.CreatedBy)
+        </span>
+    </div>
+    <div>
+        <span class="display-label">Date Created: </span><span class="display-field">
+            @Html.DisplayFor(model => model.Created)
+        </span>
+    </div>
+    <div>
+        <span class="display-label">Modified By: </span><span class="display-field">
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </span>
+    </div>
+    <div>
+        <span class="display-label">Date Modified: </span><span class="display-field">
+            @Html.DisplayFor(model => model.Modified)
+        </span>
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to Section", "Navi", "Section", new { id = @Model.Parent.Id }, null)
+    </p>    
+}

@@ -1,0 +1,162 @@
+﻿@using RadCms.Entities
+@using RadCms.Helpers
+@model RadCms.Core.Containers.Models.ActionBarModel
+<div id="leftToolBar"></div>
+@{
+    var showPublish = false;
+    var showEditDraft = false;
+    var showEditPage = false;
+    var showRequestAccess = false;
+    var showUnlock = false;
+    var showEditWebParts = false;
+    var pageLabel = Model.Type.Title == "BLOG" ? "POST" : "PAGE";
+
+    switch (Model.Status)
+    {
+        case CmsPageBase.STATUS_CHANGE_SAVED:
+            if(Model.AccessMode >= PermissionType.Publish){
+                showEditWebParts = true;
+                showPublish = true;
+            }
+            if (Model.AccessMode >= PermissionType.Edit)
+            {
+                showEditDraft = true;
+            }
+            break;
+        case CmsPageBase.STATUS_EDITING_BY_OTHERS:
+            if (Model.AccessMode >= PermissionType.Publish)
+            {
+                showEditWebParts = true;
+            }
+            goto case CmsPageBase.STATUS_EDITING_AGAIN;
+        case CmsPageBase.STATUS_EDITING_START:
+        case CmsPageBase.STATUS_EDITING_AGAIN:
+            string userName = null;
+            if (HttpContext.Current != null && HttpContext.Current.User != null)
+            {
+                userName = HttpContext.Current.User.Identity.Name.ToUpper();
+            }
+            if (userName != null && userName == Model.ModifiedBy && Model.AccessMode >= PermissionType.Edit)
+            {
+                showEditDraft = true;
+            }
+            else
+            {
+                if (Model.AccessMode >= PermissionType.Edit)
+                {
+                    showUnlock = true;
+                }
+            }
+            break;
+        case CmsPageBase.STATUS_NORMAL:
+        default:
+            if (Model.AccessMode >= PermissionType.Publish)
+            {
+                showEditWebParts = true;
+            }
+            if (Model.AccessMode >= PermissionType.Edit)
+            {
+                showEditPage = true;
+            }
+            break;
+    }
+
+    if (Model.Id != 1)
+    {
+        if(CmsHelper.Site == "fratalk")
+        {
+            showEditWebParts= Model.Type.Title =="BLOG";
+        }
+    }
+
+    if (Model.AccessMode <= PermissionType.Default)
+    {
+        showRequestAccess = true;
+    }
+
+    if (Model.AccessMode >= PermissionType.Edit)
+    {
+<div style="display: none">
+    @using (Html.BeginForm("Do", "PageCms", new { id = Model.FriendlyId, area = "Containers" }, FormMethod.Post, new { @id = "actForm" }))
+    {
+            @Html.Hidden("act", null, new { @id = "act" });
+        }
+</div>
+    }
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var site = "@(CmsHelper.Site)";
+        var True = true;
+        var False = false;
+        var barConfig = {
+            pageLabel: "@(pageLabel)",
+            showPublish: @(showPublish),
+            showEditDraft: @(showEditDraft),
+            showEditPage: @(showEditPage),
+            showRequestAccess: @(showRequestAccess),
+            showUnlock: @(showUnlock),
+            showEditWebParts: @(showEditWebParts),
+        };
+
+        var items = [];
+
+        if(barConfig.showPublish){
+            items.push({
+                type: "button",
+                text: "PUBLISH THIS " + barConfig.pageLabel,
+                spriteCssClass: "cms-icon cms-icon-publish",
+                overflow: 'never',
+                attributes: {"id":"publishBtn"},
+                click: CMS.PAGE.publish});
+        }
+
+        if(barConfig.showEditDraft){
+            items.push({
+                type: "button",
+                text: "EDIT THIS DRAFT",
+                spriteCssClass: "cms-icon cms-icon-editdraft",
+                overflow: 'never',
+                attributes: {"id":"editDraftBtn"},
+                click: CMS.PAGE.edit});
+        }
+
+        if(barConfig.showEditPage){
+            items.push({
+                type: "button",
+                text: "EDIT THIS " + barConfig.pageLabel,
+                spriteCssClass: "cms-icon cms-icon-edit",
+                overflow: "never",
+                attributes: {"id": "editPageBtn"},
+                click: CMS.PAGE.edit
+            });
+        }
+        
+        if(barConfig.showEditWebParts){
+            items.push({
+                type: 'button',
+                text: site === 'fratalk'? 'MANAGE COMMENTS': 'EDIT WEBPARTS',
+                spriteCssClass: 'cms-icon cms-icon-webpart',
+                overflow: 'never',
+                'attributes': {id: 'editWebPartsBtn'},
+                click: CMS.PAGE.editWebParts
+            });
+        }
+
+        if(barConfig.showUnlock){
+            items.push({
+                type: "button",
+                text: "EDIT THIS " + barConfig.pageLabel,
+                spriteCssClass: "cms-icon cms-icon-edit",
+                overflow: "never",
+                attributes: {"id": "editPageBtn"},
+                click: CMS.PAGE.unlock
+            });
+        }
+        $('#leftToolBar').kendoToolBar({
+            resizable: false,
+            items: items
+        });
+    });
+</script>

@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "FRACMS Home";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+    int roleId = (int)ViewBag.RoleId;
+    bool isUser = (bool)ViewBag.IsUser;
+}
+@using RadCms.Entities
+@using RadCms.Helpers
+@section header{
+    <link type="text/css" rel="stylesheet" href="~/Core/Content/datatables/datatables.min.css" />
+    <link type="text/css" rel="Stylesheet" href="@Url.Content("~/Core/assetsCms/css/themes/base/sprites.css")" />
+    <link type="text/css" rel="Stylesheet" href="@Url.Content("~/Core/assetsCms/css/cmsPanel.css")" />
+
+<script type="text/javascript" src="~/Core/Content/datatables/DataTables-1.10.13/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Core/Content/moment/moment.min.js"></script>
+    <script type="text/javascript">
+        var baseUrl = '@Url.Content("~/")';
+    </script>
+    <script src="@Url.Content("~/Core/Scripts/cms/cms-panel.js")" type="text/javascript"></script>
+}
+@if (isUser)
+{
+<div style="overflow: hidden;">
+    <span id="cmsHomeNotification"></span>
+    <div id="cmsHomeNotifications">
+    </div>
+    <div id="cmsHomeMenu">
+        <ul>
+            <li class="cms-state-active"><span class="cms-panel cms-panel-drafts"></span><span>DRAFTS</span>
+            </li>
+            @if (roleId >= 1)
+            {
+            <li><span class="cms-panel cms-panel-access"></span><span>SITE ACCESS</span></li>
+            <li><span class="cms-panel cms-panel-apps"></span><span>APPLICATIONS</span></li>
+            }
+            <li><span class="cms-panel cms-panel-reports"></span><span>AUDIT REPORTS</span></li>
+        </ul>
+    </div>
+    <div id="cmsHomeContent">
+        <div class="cms-state-active">
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">DRAFTS</span>
+            </div>
+            <div class="tabstrip">
+                <ul>
+                    <li class="k-state-active">My Drafts</li>
+                    <li>Other Drafts</li>
+                </ul>
+                <div>
+                    <table id="myDraftsGrid">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Title</th>
+                                <th>Date Modified</th>
+                                <th>Modified By</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Status</th>
+                                <th>Title</th>
+                                <th>Date Modified</th>
+                                <th>Modified By</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div id="myDraftsMessage">
+                        <p>
+                            You don't have any drafts.
+                        </p>
+                    </div>
+                    @*<div id="myLibDraftsGrid"></div>*@
+                </div>
+                <div>
+                    <table id="otherDraftsGrid">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Title</th>
+                                <th>Date Modified</th>
+                                <th>Modified By</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Status</th>
+                                <th>Title</th>
+                                <th>Date Modified</th>
+                                <th>Modified By</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div id="otherDraftsMessage">
+                        <p>
+                            There is no drafts from other CMS user.
+                        </p>
+                    </div>
+                    @*<div id="otherLibDraftsGrid"></div>*@
+                </div>
+            </div>
+        </div>
+        @if (roleId >= 1)
+        {
+        <div>
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">SITE ACCESS</span>
+            </div>
+            <div class="tabstrip">
+                <ul>
+                    <li class="k-state-active">CMS</li>
+                </ul>
+                <div>
+                    <iframe src="@Url.Content("~/Permission/PermissionCms/Manage")" title="Site Access" seamless="seamless" frameborder="0" width="760" style="height: 100%;"></iframe>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">APPLICATIONS</span>
+            </div>
+            <div class="tabstrip">
+                <ul>
+                    <li class="k-state-active">Applications</li>
+                </ul>
+                <div>
+                    @if(CmsHelper.Site == "rsac")
+                    {
+                        <iframe src="/rsacadmin/" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+                    }
+                    else
+                    {
+                        <p>
+                            No applications.
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+        <div>
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">AUDIT REPORTS</span>
+            </div>
+            <div class="tabstrip">
+                <ul>
+                    <li class="k-state-active">Reports</li>
+                </ul>
+                <div>
+                    <iframe src="@Url.Content("~/cmsapp/auditreport/")" title="Audit Reports" seamless="seamless" frameborder="0" width="760" style="height: 100%;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+else
+{
+    <div class="portletOne">
+        <h2>
+            You do not currently have sufficient permissions to edit content on this page.</h2>
+        <p>
+            To request access to the CMS application please click <a href="mailto:eric.lovett@dot.gov;mark.patterson@dot.gov?subject=CMS Application Access Request">
+                here</a>. Please contact your supervisor and your Program Office’s Content Manager
+            for approval before sending this request.
+        </p>
+        <p>
+            Include your name, contact information, and a brief justification for elevated access
+            to the CMS application. Your application will be reviewed and you will receive a
+            response shortly thereafter.
+        </p>
+        <p>
+            For site updates or suggestions, or to find out who in your section has access to
+            CMS to make changes to the public website, please <a href="mailto:eric.lovett@dot.gov;mark.patterson@dot.gov?subject=FRA Website/CMS Inquiry">
+                contact the web team</a>.
+        </p>
+        <p>
+            Thank you,<br />
+            The Web Team
+        </p>
+    </div>
+}

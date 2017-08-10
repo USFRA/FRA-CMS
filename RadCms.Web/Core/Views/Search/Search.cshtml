@@ -1,0 +1,143 @@
+﻿@model RadCms.Models.FraSearchModel
+@{
+    ViewBag.Title = "Site Search";
+    Layout = "~/Core/Views/Shared/_LayoutGlobalNew.cshtml";    
+}
+@section header{
+    <link rel="Stylesheet" type="text/css" href="/Core/assets/css/gfilter.css" />
+    <script src="/Core/Scripts/gfilter.js" type="text/javascript"></script>
+    <script src="/Core/Scripts/jquery.ba-hashchange.min.js" type="text/javascript"></script>
+    <script src="/Core/Scripts/cms/cms-comm.js" type="text/javascript"></script>
+    <style type="text/css">
+        html { background-color: #000; background-image: url('/Core/assetsCms/images/statusBackGreen.png');
+                background-repeat:repeat-x}      
+                        
+        #articleWrapper
+        {
+            margin-right: 0px;
+            margin-left: 0px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .result b
+        {
+            color: #664799;
+        }
+        
+        .result a
+        {
+            text-decoration:none;
+        }
+        
+        .paginator b
+        {
+            color: #664799;
+        }
+    </style>
+}
+@*@section cmsButtons{
+    <img title="View live version" alt="View live version" src="/Core/assetsCms/images/statusGreen.png" id="PageStatusIcon">
+}*@
+<div id="contentWrapper">
+    <div id="articleWrapper">
+        <h1>
+            Site Search</h1>
+        @*<form method="get" action="/search">
+        <input name="q" id="keywordText" />
+        <input type="submit" id="keywordTextBtn" value="GO" />
+        [TODO: Remove search box here]
+        </form>*@
+        <div class="paginator">
+            @*<div class="paginatorLeft">
+            <a title="5 per page" class="pa5" href="#">5</a>
+            <a title="10 per page" class="pa10" href="#">10</a>
+            <a title="20 per page" class="pa20" href="#">20</a>                                            
+        </div>*@
+            <div class="paginatorLeft">
+                Search For : <b>@Model.Query</b>
+                @if (!String.IsNullOrEmpty(Model.Suggestion)) { 
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Did you mean : <a href = "/search?q=@Model.Suggestion" style="background:none;border:none;width:auto;"><b><i>@Model.Suggestion</i></b></a></span>
+                }
+            </div>
+            @*<img id="preLoader" src="/Core/assets/images/preloader.gif" alt="Loading" />   *@
+            <div class="pagination">
+                <span class="paginationInfo"><b>@(Model.Total < Model.Start + 1 ? Model.Total : Model.Start + 1)
+                    - @(Model.Total < Model.Start + 10 ? Model.Total : Model.Start + 10)</b> of <b>@Model.Total</b>
+                </span>
+                @if (Model.Start == 0)
+                { 
+                    <a class="btn disabled pagePrevBtn" title="Previous" href="#">«</a>
+                }
+                else
+                { 
+                    <a class="btn pagePrevBtn" title="Previous" href="@Model.PreviousLink">«</a>
+                }
+                @if (Model.Total <= Model.Start + 10)
+                { 
+                    <a class="btn disabled pageNextBtn" title="Next" href="#">»</a>   
+                }
+                else
+                { 
+                    <a class="btn pageNextBtn"  title="Next" href="@Model.NextLink">»</a>       
+                }
+            </div>
+            <div class="clearFloat">
+            </div>
+        </div>
+        <div id="searchResult">
+            @{
+                if (Model.Total == 0)
+                {
+                <div class="noresult">
+                    No result</div>
+                }
+                else
+                {
+                    int rowNum = 1;
+                    foreach (var i in Model.ResultList)
+                    {
+
+                        <div class='result @(rowNum % 2 == 0 ? "even" : "odd")'>
+                            <div>
+                                <span class="type">@i.MIMEType</span>
+                            </div>
+                            <div class="title">
+                                <a class='link' href='@i.Url'>@Html.Raw(i.Title)</a>
+                            </div>
+                            <div class="indent">
+                                @Html.Raw(i.Subject)
+                            </div>
+                        </div>
+                        rowNum++;
+                    }
+                }
+            }
+        </div>
+        <div class="paginator">
+            <div class="pagination">
+                <span class="paginationInfo"><b>@(Model.Total < Model.Start + 1 ? Model.Total : Model.Start + 1)
+                    - @(Model.Total < Model.Start + 10 ? Model.Total : Model.Start + 10)</b> of <b>@Model.Total</b>
+                </span>
+                @if (Model.Start == 0)
+                { 
+                    <a class="btn disabled pagePrevBtn" title="Previous" href="#">«</a>
+                }
+                else
+                { 
+                    <a class="btn pagePrevBtn" title="Previous" href="@Model.PreviousLink">«</a>
+                }
+                @if (Model.Total <= Model.Start + 10)
+                { 
+                    <a class="btn disabled pageNextBtn" title="Next" href="#">»</a>   
+                }
+                else
+                { 
+                    <a class="btn pageNextBtn"  title="Next" href="@Model.NextLink">»</a>       
+                }
+            </div>
+            <div class="clearFloat">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<RadCms.Entities.PageLayout>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Page Layout List</h2>
+
+<table>
+    <tr>
+        <th>Template Name</th>
+        <th>Thumbnail</th>
+        <th></th>
+    </tr>
+@foreach (var l in Model)
+{
+    <tr>
+        <td>
+            @l.Title
+        </td>
+        <td>
+            <img width="150" src="@Url.Content("~/template/layoutcms/image/" + @l.Id)" alt="@l.Title" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = l.Id}) | @Html.ActionLink("Delete", "Delete", new { id = l.Id})
+        </td>
+    </tr>
+}
+</table>

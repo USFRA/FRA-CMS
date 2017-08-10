@@ -1,0 +1,54 @@
+﻿@model RadCms.Entities.NaviNode
+@{
+    ViewBag.Title = "FRACMS";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";      
+}
+@section header{
+    <script id="treeview-template" type="text/kendo-ui-template">
+        #: item.title #
+        # if(item.hasChildren) { #
+        <a class='tree-button rename-section' data-id='#= item.id.substring(1) #' href='\\#' target='_blank'></a>
+        <a class="tree-button remove-section" data-id="#= item.id.substring(1) #" href="\\#" target="_blank">X</a>
+        # } else {#
+        <a class='tree-button open-page' href='#=item.linkUrl#' target='_blank'></a>
+        <a class='tree-button create-section' data-id='#= item.id #' href='\\#' target='_blank'></a>
+        # } #
+    </script>
+    <script type="text/javascript">
+        var currentNode = "n" + "@Model.Id";
+        var baseUrl = '@Url.Content("~/")';
+        var expandTo = "@ViewBag.ExpandTo";
+    </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="@Url.Content("~/Areas/ContentTree/assets/movePages.js")" type="text/javascript"></script>
+    <style type="text/css">
+        .tree-button{
+            padding-left: 20px;
+            margin-left: 10px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .open-page{
+            background-image: url("@Url.Content("~/Areas/ContentTree/assets/eye.png")");
+        }
+        .create-section{
+            background-image: url("@Url.Content("~/Areas/ContentTree/assets/sectionFolder.png")");
+        }
+        .rename-section{
+            background-image: url("@Url.Content("~/Areas/ContentTree/assets/sectionRename.png")");
+        }
+    </style>
+    
+}
+@section cmsButtons {
+}
+<div  id="treeSection">
+    <div id="tree">
+    </div>
+</div>
+<div>
+<input class="k-button" type="button" value="Move Page to Its Own Section" id="moveToSectionBtn" style="display:none" />
+<input class="k-button" type="button" value="Rename the Section" id="renameSectionBtn" style="display:none" />
+</div>
+

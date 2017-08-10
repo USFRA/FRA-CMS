@@ -1,0 +1,129 @@
+﻿@model RadCms.Web.Areas.Comment.Models.CommentViewModel
+@using RadCms.Recaptcha
+
+@if (Model.IsEditState)
+{
+    <div style="margin-top: 20px; border: 1px solid #ccc; background-color: #eee; padding-top: 50px; padding-bottom: 50px; text-align: center;">Comment Webpart</div>
+}
+else
+{
+    var username = (string)ViewData["Name"];
+    var email = (string)ViewData["Email"];
+    if (string.IsNullOrEmpty(username))
+    {
+        username = Model.Name;
+    }
+    if (string.IsNullOrEmpty(email))
+    {
+        email = Model.Email;
+    }
+
+    @Styles.Render("~/Areas/Comment/assets/Comment.css")
+    @Scripts.Render("~/cms/js", "~/Areas/Comment/assets/Comment.js")
+    @*<script type="text/javascript" src="~/Content/webparts/Comment/CommentValidation.js"></script>*@
+    <div id="comments" class="comment">
+        <h2>
+            Comments
+
+            @if (Model.Comments.Count > 0)
+            {
+                <a class="floatRight" style="font-size: .7em; margin-top: 10px;" href="#commentForm">Add a Comment</a>
+            }
+        </h2>
+        <div class="datatable">
+            @foreach (var c in Model.Comments)
+            {
+                <div class="columnlabel rowblue">
+                    <strong>
+                        @c.Name
+                    </strong>
+                    <em>
+                        @c.Created
+                    </em>
+                </div>
+                <div class="columncontent">
+                    @if (c.Content != null)
+                    {
+                        @Html.Raw(c.Content)
+                    }
+                </div>
+            }
+        </div>
+
+        @if (Model.Status)
+        {
+            <p>
+                <strong>Submit a comment</strong> <span style="font-weight: normal; font-size: 0.9em; font-style: italic">
+                    (All fields are required)
+                </span>
+            </p>
+            <p>
+                <em>
+                    Commenters should be aware that offensive language, Privacy Act protected, or other
+                    inappropriate material will not be posted.
+                </em>
+            </p>
+            using (Html.BeginForm("Add", "Comment", new { area = "RadCms.Comment" }, FormMethod.Post, new { @class = "webpart", id = "commentForm", webpartid = "Comment" }))
+            {
+                @Html.ValidationSummary(true)
+                <label for="verySpecialName" style="position: absolute; left: -9999px;">
+                    Very Special Name
+                </label>
+                <input id="verySpecialName" style="position: absolute; left: -9999px" type="text"
+                       tabindex="-1" name="veryspecialname" />
+
+                    <label for="returnUrl" style="position: absolute; left: -9999px;">
+                        Page Url
+                    </label>
+                    <input id="returnUrl" style="position: absolute; left: -9999px" type="text"
+                           tabindex="-1" name="returnUrl" value="/@Model.Url" />
+
+                        <input id="pageId" name="PageId" type="hidden" value="@Model.PageId" />
+                        <div class="indent">
+                            <div class="col-2-1">
+                                <div>
+                                    <strong>Name </strong>
+                                </div>
+                                <div>
+                                    @Html.TextBox("Name", username, new { id = "name", maxlength = "150", size = "50" })
+                                    @Html.ValidationMessage("Name")
+                                </div>
+                            </div>
+                            <div class="col-2-2">
+                                <div>
+                                    <strong>Email </strong>
+                                </div>
+                                <div>
+                                    @Html.TextBox("Email", email, new { size = "50" })
+                                    @Html.ValidationMessage("Email")
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <strong>Comment </strong>
+                                </div>
+                                <div>
+                                    @Html.TextArea("Content", (string)ViewData["Content"], new { id = "comment", cols = "50", rows = "10", @class = "htmlEditor" })
+                                    @Html.ValidationMessage("Cotent")
+                                </div>
+                            </div>
+                            @if (!ViewBag.RecaptchaSkipValidation)
+                        {
+                                <div id="recaptchaWrapper">
+                                    @Html.ReCAPTCHA()
+                                    @Html.ValidationMessage("recaptcha")
+                                </div>
+                            }
+
+                            <div class="commentFooter">
+                                <input class="button box floatLeft" name="submit" type="submit" value="Submit" id="button" />
+                            </div>
+                        </div>
+            }
+        }
+        else
+        {
+            <p><strong>Commenting is now closed.</strong></p>
+        }
+    </div>
+}

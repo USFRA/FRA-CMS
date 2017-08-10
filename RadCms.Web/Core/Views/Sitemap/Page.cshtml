@@ -1,0 +1,45 @@
+﻿@using RadCms.Models
+@model IEnumerable<TreeModel>
+@{
+    ViewBag.Title = "Page";
+    Layout = "~/Core/Views/Shared/_LayoutApp.cshtml";
+}
+@section header{
+    <link href="@Url.Content("~/layout/styles/1")" type="text/css" rel="Stylesheet" />
+    <style>
+        ul ul{
+            margin-top: 0px;
+        }
+        li.section{
+            padding-top: 20px;
+            list-style: 
+        }
+        li.section:before{
+            color: grey;
+        }
+    </style>
+}
+<div class="main wrapper clearfix">
+    <article class="clearfix">
+        <h1>Sitemap</h1>
+        @DisplayTreeLeaves(Model)
+    </article>
+</div>
+@helper DisplayTreeLeaves(IEnumerable<TreeModel> leaves)
+    {
+    <ul>
+        @foreach (var t in leaves)
+        {
+            if (t.hasChildren)
+            {
+            <li class="section"><span>@t.title</span>
+                @DisplayTreeLeaves(t.items)
+            </li>
+            }
+            else
+            {
+            <li><a href="@Url.Content("~/" + t.linkUrl)">@t.title</a> </li>
+            }
+        }
+    </ul>
+}

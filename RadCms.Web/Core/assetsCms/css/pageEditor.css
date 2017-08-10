@@ -1,0 +1,303 @@
+﻿.cms-editable
+{
+    box-sizing: border-box;
+}
+
+#contentOneSource .cms-editable-container{
+    min-height: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+#contenttwoSource .cms-editable-container{
+    min-height: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.cms-editable-container:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+#metadataWrapper
+{
+    background: inherit;
+    font-size: 13px;
+    margin: 0px auto;
+    border: none;
+    padding: 0px 20px 10px 20px;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+#accordionWrapper
+{
+    border: none;
+    position: fixed;
+    top: 90px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+}
+
+.k-header > h3
+{
+    display: block;
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 1024px;/* #bodyWrapper width */
+}
+.k-state-selected.k-header h3 a
+{
+    color: White;
+}
+.k-header h3 a
+{
+    text-decoration: none;
+    line-height: 1.5em;
+}
+.k-editor-inline:hover
+{
+    border-color: #dbdbde;
+}
+.k-editor-inline
+{
+    border-color: transparent;
+    margin: 5px;
+    padding: 5px;
+    border-width: 1px;
+    box-shadow: none;
+    background: none;
+}
+        
+.k-editor-inline.k-state-active
+{
+    background: none;
+}
+#metadataWrapperOne {
+    background-color: #888888;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#metadataWrapperOne > .k-header
+{
+    border-bottom-width: 0px;
+}
+
+#leftMetaData{
+    display: inline-block;
+    width: 35%;
+}
+#rightMetaData{
+    display: inline-block;
+    width: 24%;
+}
+#htmlHeaderMetaData{
+    display: inline-block;
+    float: right;
+    width: 40%;
+}
+
+#metadataWrapper .metaDataField
+{
+    padding: 5px;
+}
+
+.display-label, .editor-label
+{
+    padding-top:10px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.display-field, .editor-field
+{
+    margin: 2px 0 0 0;
+    font-size: 1em;
+}
+
+.editor-field .ui-datepicker-trigger 
+{
+    background:none;   
+    border:none;
+    vertical-align: middle;
+    margin-left: -30px;
+    padding-left: 6px; padding-right: 6px;
+}
+
+#metadataWrapper .col3, #elibHeader .col3
+{ 
+    float: left;
+    width: 320px;
+}
+
+#metadataWrapper .selectlist-item 
+{
+    color:black;
+}
+
+
+#metadataWrapper .col1
+{
+   clear:both;
+}
+
+#metadataWrapper .col2
+{  
+    float: left;
+    width: 480px;
+}
+
+#metadataWrapper .col3
+{ 
+    float: left;
+    width: 320px;
+}
+
+
+#elibHeader .col1
+{
+   clear:both;
+   padding-top:10px;
+    padding-right:10px;
+}
+
+#elibHeader .col2
+{  
+    float: left;
+    width: 350px;
+    padding-right:10px;
+}
+
+#elibHeader .col3
+{ 
+    float: left;
+    width: 220px;
+    padding-right:10px;
+}
+
+/* Box Size broken out by 32/16/8/4/2 */
+.col-4-32,  .col2-16,   .col-1-8            { width: 12.5%; }
+.col-5-32                                   { width: 15.625%; }
+.col-6-32,  .col-3-16                       { width: 18.75%; }
+.col-8-32,  .col-4-16,  .col-2-8, .col-1-4  { width: 25%; }
+.col-10-32, .col-5-16                       { width: 31.25%; }
+.col-12-32, .col-6-16,  .col-3-8            { width: 37.5%; }
+.col-14-32, .col-7-16                       { width: 43.75%; }
+.col-16-32, .col-8-16,  .col-4-8, .col-1-2  { width: 50%; }
+.col-18-32, .col-9-16                       { width: 26.25%; }
+.col-20-32, .col-10-16, .col-5-8            { width: 62.5%; }
+.col-22-32, .col-11-16                      { width: 68.75%; }
+.col-24-32, .col-12-16, .col-6-8, .col-3-4  { width: 75%; }
+.col-26-32, .col-13-16                      { width: 81.25%; }
+.col-27-32                                  { width: 84.375% }
+.col-28-32, .col-14-16, .col-7-8            { width: 87.5%; }
+.col-32-32, .col-1-1                        { width: 100%; }
+
+/* Broken out by 37 ++TITLE and PUBLICATION DATE ONLY++ */
+.col-43-250           { width: 17.2%; }               /* for PublicationDate  */ 
+.col-207-250          { width: 82.8%; }               /* for Title            */
+.col-43-250 button    { padding: 0px 0px 3px 8px; }   /* for PublicationDate calendar  */
+
+.formFieldLeft, .formFieldLeftNoPadding  { float: left; }
+.formFieldLeft .editor-label, .formFieldLeft .editor-field 
+{
+    padding-right: 10px;
+}
+
+.formFieldRight { float: right; }
+.formFieldRightNoPadding { float: right; }
+.formFieldRight .editor-label, .formFieldRight .editor-field 
+{
+    padding-left: 10px;
+}
+
+select, select.selectlist-select, ul.selectlist-list    { width: 100%; }
+
+        
+#metaWrapper {
+    background-color: #cfe2ec;
+}
+#metaFields   
+{
+    border-top: 1px solid #6dc2f4;  
+    padding: 10px 18px 20px 15px;
+}
+#metaFields .col1   { padding-top: 0px; }
+
+#adminFields {
+    background: transparent url('/assets/images/background/adminBackground.png') repeat left top; 
+    border-top: 1px solid #6dc2f4; 
+    padding: 10px 10px 20px 15px;
+}
+#adminFields fieldset { border: 0; padding: 0; margin: 0; }
+
+#metadataWrapper .text-box, #elibHeader .text-box
+{
+     width: 100%; overflow: auto;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.attachedFile
+{
+}
+
+input[type="text"], select, textarea {
+    border: 1px solid #ccc;
+}
+
+#metadataWrapperOne strong, #metadataWrapperOne label {
+    color: #dfdfdf;
+    font-family: open sans Condensed;
+    text-transform: uppercase;
+}
+#metadataWrapperOne .k-textbox{
+    width: 100%;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+    display:block;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+
+
+/*
+HTML Editor 
+------------------------*/
+
+.k-tool-icon.k-embedVideo{
+    background-image: url('../images/youTube.png');
+    background-repeat: no-repeat;
+    background-position: center 7px;
+}

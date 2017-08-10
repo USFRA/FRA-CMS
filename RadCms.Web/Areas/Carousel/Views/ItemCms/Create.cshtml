@@ -1,0 +1,96 @@
+﻿@model RadCms.Entities.Carousel
+@{
+    ViewBag.Title = "Create";
+}
+@section header{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Core/assetsCms/tinymce/tinymce.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Core/Scripts/editor/carousel-editor.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Core/assetsCms/css/pageEditor.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Core/assets/css/main.css")" type="text/css" rel="Stylesheet" />
+    <link href="@Url.Content("~/Areas/Carousel/assets/style.css")" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript">
+        var sectionId = 1;
+    </script>
+}
+@section cmsButtons{
+<p style="text-align: right;">
+    @Html.ActionLink("Back to List", "Index", "Item", new { area = "RadCms.Carousel" }, null)
+    <a href="#" class="k-button k-primary" id="SaveChange">Save
+        @*<img src="@Url.Content("~/Core/assetsCms/images/saveButton.png")" alt="Save" />*@
+    </a> 
+    <a href="#" class="k-button" id="CancelChange">Cancel
+        @*<img src="@Url.Content("~/Core/assetsCms/images/cancelButton.png")" alt="Cancel" />*@
+    </a>
+</p>
+    <div style="display: none">
+        @using (Html.BeginForm("Do", "Item", new { id = Model.Id, area = "RadCms.Carousel" }, FormMethod.Post, new { @id = "actForm" }))
+        {    
+            @Html.HiddenFor(model => model.Id)
+            @Html.Hidden("act", "cancel", new { @id = "act" });
+        }
+    </div>
+}
+@using (Html.BeginForm("Create", "Item", new { area = "RadCms.Carousel" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <table style="width: 100%; text-align: left;">
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.Title)
+            </th>
+            <td>
+                @Html.TextBoxFor(model => model.Title, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(model => model.Title)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.SlideId)
+            </th>
+            <td>
+                @Html.EditorFor(model => model.SlideId)
+                @Html.ValidationMessageFor(model => model.SlideId)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.Visible)
+            </th>
+            <td>
+                @Html.EditorFor(model => model.Visible)
+                @Html.ValidationMessageFor(model => model.Visible)
+            </td>
+        </tr>
+    </table>
+    <div id="contentOneSource">
+        <div class="webpart cms-replaceable" webpartid="carousel" id="carouselWrapper" data-replace="[$webpart(carousel)$]">
+            <div class="carouselItem cms-editable" style="left: 0px;">
+                <div class="wrapper">
+                    <div class="item-container">
+                        <div class="item-text-wrapper">
+                            <div class="item-title-wrapper">
+                                <h2>
+                                    How Well Do You Sleep?
+                                </h2>
+                            </div>
+                            <div class="item-desc-wrapper">
+                                <p>
+                                    Learn your sleep disorder risk using the Anonymous Sleep Disorders Screening Tool.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item-btn-wrapper">
+                            <a href="#">Assess Your Risk</a>
+                        </div>
+                    </div>
+                </div>
+                <img src="@Url.Content("~/Areas/Carousel/assets/railroader.jpg")" />
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.SlideContent)
+    <p style="display: none;">
+        <input id="submitChange" type="submit" value="Create" />
+    </p>
+}

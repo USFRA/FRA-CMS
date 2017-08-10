@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "Manage Page";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+    bool isUser = (bool)ViewBag.IsUser;
+    PermissionType pagePermission = (PermissionType)ViewBag.PagePermission;
+}
+@using RadCms.Entities
+@section header{
+    @Styles.Render("~/Core/assetsCms/css/themes/base/sprites.css", "~/Core/assetsCms/css/cmsPanel.css")
+    <style type="text/css">
+        #layoutView{
+            position: relative;
+            height: 100%;
+        }
+        #layoutView:after{
+            display: table;
+            content: "";
+            clear: both;
+        }
+    </style>
+    <script type="text/javascript">
+        var tab = @(ViewBag.Tab);
+        var type = "@(ViewBag.SectionType)";
+    </script>
+    @Scripts.Render("~/Core/Scripts/cms/cms-manage-panel.js")
+}
+@if (isUser)
+{
+<div style="overflow: hidden;">
+    <span id="cmsHomeNotification"></span>
+    <div id="cmsHomeNotifications">
+    </div>
+    <div id="cmsHomeMenu">
+        <ul>
+            @if (pagePermission >= PermissionType.Create)
+            {
+                if (ViewBag.SectionType == "BLOG" || ViewBag.SectionType == "BLOG HOME")
+                {
+                    <li><span class="cms-panel cms-panel-add"></span><span>ADD NEW POST</span></li>
+                    <li><span class="cms-panel cms-panel-move"></span><span>MOVE POSTS</span></li>
+
+                }
+                else
+                {
+                    <li><span class="cms-panel cms-panel-add"></span><span>ADD NEW PAGE</span></li>
+                    <li><span class="cms-panel cms-panel-move"></span><span>MOVE PAGES</span></li>
+                }
+            }
+            <li><span class="cms-panel cms-panel-history"></span><span>HISTORY</span> </li>
+            <li><span class="cms-panel cms-panel-relationships"></span><span>RELATIONSHIPS</span> </li>
+        </ul>
+    </div>
+    <div id="cmsHomeContent">
+        @if (pagePermission >= PermissionType.Create)
+        {
+        <div>
+            @if (ViewBag.SectionType == "BLOG" || ViewBag.SectionType == "BLOG HOME")
+            {
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">ADD NEW BLOG POST</span>
+            </div>
+            }
+            else
+            {
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">ADD NEW PAGE</span>
+            </div>
+            }
+            <div class="tabstrip">
+                <ul>
+                    <li class="k-state-active">Select Layout</li>
+                </ul>
+                <div>
+                    <div id="layoutView"></div>
+                </div>
+            </div>
+        </div>
+           // if (ViewBag.SectionType != "BLOG")
+         //   {
+            <div>
+                <div class="cms-panel-header">
+                    <span class="cms-panel-title">
+                        @if (ViewBag.SectionType == "BLOG" || ViewBag.SectionType == "BLOG HOME")
+                        {
+                            <text>MOVE POSTS</text>
+                        }
+                        else
+                        {
+                            <text>MOVE PAGES</text>
+                        }
+                    </span>
+                </div>
+                <div class="tabstrip">
+                    <ul>
+                        <li class="k-state-active">
+                            @if (ViewBag.SectionType == "BLOG" || ViewBag.SectionType == "BLOG HOME")
+                            {
+                                <text>POSTS</text>
+                            }
+                            else
+                            {
+                                <text>PAGES</text>
+                            }
+                        </li>
+                    </ul>
+                    <div>
+                        <iframe src="@Url.Content("~/ContentTree/Sectioncms/MovePages/" + ViewBag.PageId + "?_no_cache=" + DateTime.Now.Ticks)" title="Move Page Treeview" seamless="seamless" frameborder="0" style="width:100%; height: 100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+          //  }
+        }
+        <div>
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">HISTORY</span>
+            </div>
+            <div class="tabstrip">
+                <ul>
+                    <li class="k-state-active">History</li>
+                </ul>
+                <div>
+                    <iframe src="@Url.Content("~/Containers/Pagecms/History/" + ViewBag.PageId)" title="Page Histories" seamless="seamless" frameborder="0" style="width:100%; height:100%"></iframe>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="cms-panel-header">
+                <span class="cms-panel-title">RELATIONSHIPS</span>
+            </div>
+            <div class="tabstrip">
+                <ul>
+                    <li class="k-state-active">Relationships</li>
+                </ul>
+                <div>
+                    <iframe src="@Url.Content("~/Containers/Pagecms/AnalyzeLinks/" + ViewBag.PageId)" title="Analyze Links" seamless="seamless" frameborder="0" style="width:100%; height:100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+else
+{
+    <div class="portletOne">
+        <h2>
+            You do not currently have sufficient permissions to edit content on this page.</h2>
+        <p>
+            To request access to the CMS application please click <a href="mailto:eric.lovett@dot.gov;mark.patterson@dot.gov?subject=CMS Application Access Request">
+                here</a>. Please contact your supervisor and your Program Office’s Content Manager
+            for approval before sending this request.
+        </p>
+        <p>
+            Include your name, contact information, and a brief justification for elevated access
+            to the CMS application. Your application will be reviewed and you will receive a
+            response shortly thereafter.
+        </p>
+        <p>
+            For site updates or suggestions, or to find out who in your section has access to
+            CMS to make changes to the public website, please <a href="mailto:eric.lovett@dot.gov;mark.patterson@dot.gov?subject=FRA Website/CMS Inquiry">
+                contact the web team</a>.
+        </p>
+        <p>
+            Thank you,<br />
+            The Web Team
+        </p>
+    </div>
+}

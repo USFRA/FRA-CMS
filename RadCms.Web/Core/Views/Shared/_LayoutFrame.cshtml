@@ -1,0 +1,22 @@
+﻿@using RadCms.Helpers 
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js gt-ie8"> <!--<![endif]-->
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=Edge"/> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="The public homepage for the Federal Railroad Administration, an operating mode of the Department of Transportation." />
+    <meta name="keywords" content="Federal Railroad Administration, FRA, trains, train tracks, railroad crossing, freight railroading, passenger rail, tiger, arra, railroad safety, research &amp; development, grants, licenses, certificates" />
+    
+    @Styles.Render("~/common/css", "~/kendo/css")
+    @Scripts.Render("~/common/js", "~/kendo/web/js")
+    
+    @RenderSection("header", required: false)
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

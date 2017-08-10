@@ -1,0 +1,73 @@
+﻿@model RadCms.Core.Containers.Models.EditPageModel
+@using RadCms.Helpers
+@{
+    ViewBag.Title = "Edit Page";
+    Layout = "~/Core/Views/Shared/_LayoutGlobalNew.cshtml";
+    bool isSuperUser = RadCms.Security.SecurityHelper.IsSuperUser();
+    bool isAdmin = RadCms.Security.SecurityHelper.IsAdmin();
+    ViewData["IsAdmin"] = isAdmin;
+    ViewData["ViewState"] = "EDIT";
+    var actionViewModel = new RadCms.Core.Containers.Models.ActionBarModel
+    {
+        Id = Model.Id,
+        IsPublished = Model.IsPublished,
+        Status = ViewBag.Status,
+        SectionId = ViewBag.NaviNode.Id,
+        ModifiedBy = ViewBag.ModifiedBy,
+        LastModified = ViewBag.Modified,
+        AccessMode = ViewBag.AccessMode,
+    };
+
+}
+
+@section header{
+    <link href="@Url.Content("~/layout/styles/" + Model.Layout)" type="text/css" rel="Stylesheet" />
+    <link href="@Url.Content("~/Core/assetsCms/css/pageEditor.css")" rel="stylesheet" type="text/css" />
+    <style>
+        @Html.BackgroundStyle(Model.Status)
+        .header-container{
+            background-position: 0 224px;
+        }
+        #headerTop{
+            margin-top: 224px;
+        }
+        .field-validation-error{
+            display: inline;
+        }
+    </style>
+    @if (!isAdmin)
+    {  
+        <style type="text/css">
+            #rightMetaData, #leftMetaData{
+                width: 49%;
+            }
+        </style>
+    }
+    
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Core/assetsCms/tinymce/tinymce.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Core/Scripts/editor/cms-editor.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var sectionId = "@(ViewBag.NaviNode.Id)";
+        var pageLayoutId = "@(Model.Layout)";
+        var baseUrl = "@Url.Content("~/")";
+    </script>
+    @Html.Raw(ViewBag.WebpartHeaders)
+}
+@section leftActionBar{
+    @Html.Partial("~/Core/Containers/Views/PageCms/_LeftEditBarPartial.cshtml", actionViewModel)
+}
+@section rightActionBar{
+}
+
+@section statusBar{
+    @Html.Partial("~/Core/Containers/Views/PageCms/_MessageBarPartial.cshtml", actionViewModel)
+}
+@using (Html.BeginForm(new { id = Model.Id }))
+{
+    @Html.ValidationSummary(true)
+    @Html.Partial("~/Core/Containers/Views/PageCms/_EditFormPartial.cshtml", Model, ViewData)
+    <p style="display: none">
+        <input type="submit" id="submitChange" value="Save" />
+    </p>
+}

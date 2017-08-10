@@ -1,0 +1,30 @@
+﻿@model RadCms.Entities.FooterSection
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Model.Title</h2>
+
+<fieldset>
+    <legend>FooterSection</legend>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Column</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Column)
+    </div>
+
+    <div class="display-label">Order</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Order)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

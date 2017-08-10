@@ -1,0 +1,12 @@
+﻿@model Nullable<System.DateTime>
+@if (Model.HasValue)
+{
+    @Html.TextBox("", String.Format("{0:MM/dd/yyyy}", Model.Value),
+            new { @class = "datePicker", @style = "width:100px;" })
+}
+else
+{
+    @Html.TextBox("", String.Format("{0:MM/dd/yyyy}", DateTime.Now),
+            new { @class = "datePicker", @style = "width:100px;" })
+}
+

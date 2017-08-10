@@ -1,0 +1,57 @@
+﻿html, body
+{
+    padding: 0px;
+    margin: 0px;
+}
+#contentHTML
+{
+    border-top: 12px solid rgb(75,182,228);
+    background-color: white;
+    border-right-width: 0px; 
+    border-left-width: 0px; 
+    border-bottom: 3px solid rgb(75,182,228);
+    border-collapse: collapse;
+    margin-top: 100px;
+    background-image: url('mainNavBar.png');
+}
+.editable table
+{
+    border-width: 0px;
+}
+#contentHTML table td
+{
+    vertical-align: top;
+    border: 0px solid #ccc;
+}
+.k-editor-inline {
+    margin: 0;
+    padding: 0px;
+    border-width: 0 !important;
+    box-shadow: none;
+    background: none;
+    background-color: transparent!important;
+}
+.k-editor-inline.k-state-active {
+    border-width: 1px;
+    padding: 0px;
+    background-color: transparent!important;
+    background: none;
+}
+.editor-field input
+{
+    width: 700px;
+}
+        
+.editor-label
+{
+    font-weight: bold;
+}
+        
+.editor-field
+{
+    margin-bottom: 10px;
+}
+.navDetailsContent
+{
+    background-color:#F3F3F3;
+}

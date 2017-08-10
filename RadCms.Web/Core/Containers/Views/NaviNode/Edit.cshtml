@@ -1,0 +1,43 @@
+﻿@model RadCms.Core.Containers.Models.EditNaviNodeModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";       
+}
+@using RadCms.Helpers
+
+    @if (@ViewBag.NaviNode.Parent != null)
+    {    
+        <div>@Html.ActionBreadcrumbCms((RadCms.Entities.NaviNode)@ViewBag.NaviNode.Parent)
+        </div>
+    }
+    
+<p></p>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Edit Section</legend>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ParentId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NodeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NodeName)
+            @Html.ValidationMessageFor(model => model.NodeName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DefaultPageId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DefaultPageId)
+            @Html.ValidationMessageFor(model => model.DefaultPageId)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+            |
+            @Html.ActionLink("Back to Section", "Navi", "Section", new { id = @ViewBag.NaviNode.Parent.Id }, null)
+        </p>
+    </fieldset>
+}

@@ -1,0 +1,32 @@
+﻿@using RadCms.Helpers
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js gt-ie8"> <!--<![endif]-->
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=Edge"/> 
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css' />
+
+    <link href="@Url.Content("~/Core/assetsCms/css/cms.css")" rel="stylesheet" type="text/css" />
+       @Styles.Render(
+                "~/common/normalize",
+                "~/common/main",
+                "~/common/css",
+                "~/cms/css",
+                        "~/cms/kendo",
+                        "~/cms/kendoSilver",
+                        "~/cms/sprites")
+    
+    @Scripts.Render(
+                "~/common/js",
+                "~/kendo/web/js")
+    
+    @RenderSection("header", required: false)
+</head>
+<body>    
+     @RenderSection("cmsButtons", required: false)
+     @RenderBody()
+</body>
+</html>

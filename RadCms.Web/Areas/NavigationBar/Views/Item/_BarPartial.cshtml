@@ -1,0 +1,11 @@
+﻿@*@model List<RadCms.NavigationBar.Entities.NavigationItem>*@
+@model List<RadCms.Web.Areas.NavigationBar.Models.MenuItem>
+<link type="text/css" rel="stylesheet" href="~/Areas/NavigationBar/assets/main.css" />
+
+<div id='navigationBarWrapper' class='clearfix webpart' @(RadCms.Helpers.CmsHelper.IsCms ? " webpartId=NavigationBar" : "")></div>
+
+<script type="text/javascript">
+    var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+</script>
+
+<script type="text/javascript" src="~/Areas/NavigationBar/assets/navigation.min.js"></script>

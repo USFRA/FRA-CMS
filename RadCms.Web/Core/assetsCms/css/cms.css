@@ -1,0 +1,188 @@
+body 
+{
+    font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    color: #333333;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top:.2em;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+}
+
+h1 {
+	font-size: 1.6em;
+	font-weight:lighter;
+	margin-bottom: .2em;
+}
+
+image 
+{
+    border:none;
+}
+
+#cmsBody
+{
+      background-color: #FFFFFF;
+      margin:5px;
+      padding:15px;
+}
+
+#cmsHomeHeader {
+    background-color: #FFFFFF;
+    border: 1px solid #C3C4C6;
+    font-family: Arial,Helvetica,sans-serif;
+    height: 35px;
+    margin-bottom: 15px;
+    padding: 15px;
+    margin:5px;
+}
+
+#cmsUser {
+    float: right;
+    padding: 0;
+}
+
+.welcomeUser {
+	font-size:15px;
+	color:#003D7D;
+	font-weight:bold;
+	text-align: right;
+}
+/*
+.userType {
+	font-size: 12px;
+	color: #999999;
+	font-style:italic;
+	text-align:right;
+}
+*/
+
+.sectionToolbar
+{
+    margin-bottom:10px;   
+}
+
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+
+.display-label, 
+.editor-label {
+    margin: 1em 0 0 0;
+    font-weight:bold;
+}
+
+.display-field, 
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+.text-box {
+    width: 30em;
+}
+
+.text-box.multi-line {
+    height: 6.5em;
+}
+
+.tri-state {
+    width: 6em;
+}
+
+img 
+{
+ border:none;       
+}
+
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+
+/* Styles for CMS Home
+-----------------------------------------------------------*/
+
+.portletOne 
+{
+    background-color: White;    
+    border: 1px solid #C3C4C6;
+    margin: 5px;
+    padding: 10px;
+}
+
+.portlet
+{
+    background-color: White;
+    float: left;
+    padding: 5px 10px;
+    margin:5px;    
+    width:400px;
+    border: 1px solid #C3C4C6;    
+}
+
+.portlet h2, .portletOne h2
+{
+    padding: 5px;
+    margin: 0px;
+    font-size: 16px;
+    border-bottom:1px solid #ccc;    
+}
+.portlet ul li, .portletOne ul li
+{
+    list-style:none;
+    margin-bottom:8px;
+}
+
+.portlet ul li span, .portletOne ul li span
+{
+ font-size:11px;
+ color:#666;   
+   
+}
+
+
+/* TABLE
+----------------------------------------------------------*/
+
+table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+}
+
+table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+}

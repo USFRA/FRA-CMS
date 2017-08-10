@@ -1,0 +1,344 @@
+﻿@model RadCms.Models.TenYearAccidentIncidentOverviewModel
+
+<table width="450em" align="center" cellspacing="2" cellpadding="2" border="0" summary="Ten Year Accident Incident Overview">
+        <caption style="display: none;" id="ContentPlaceHolder1_caption3">Table caption</caption>
+        <tbody>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+            <td>
+                <span id="ContentPlaceHolder1_LabelRR0">Reporting Level</span>
+                
+                <br>
+                <br>
+                <br>
+                <span id="ContentPlaceHolder1_LabelRR">Railroad</span>
+                <br>
+                <br>
+                Sort
+                <br>
+                <br>
+                Railroad Group</td>
+            <td align="left">
+                
+
+    <table cellspacing="3">
+    <tbody><tr>
+    <td>
+    <select style="height:20px;width:269px;" title="Consolidated Reporting" name="ReportingLevel">
+	<option value="All" selected="selected">All</option>
+	<option value="FRA Systems">FRA Systems</option>
+	<option value="Consolidated Reporting Groups">Consolidated Reporting Groups</option>
+	<option value="Individual Railroads">Individual Railroads</option>
+
+</select>
+        <br>
+    </td>
+    </tr>
+    <tr>
+    <td>
+         <a class="aspNetDisabled" title="Display all railroads beginning with a number" id="ContentPlaceHolder1_Railroad1_LinkButtonZeroToNine">0-9</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;A&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonA">A</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;B&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonB">B</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;C&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonC">C</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;D&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonD">D</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;E&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonE">E</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;F&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonF">F</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;G&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonG">G</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;H&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonH">H</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;I&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonI">I</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;J&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonJ">J</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;K&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonK">K</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;L&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonL">L</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;M&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonM">M</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;N&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonN">N</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;O&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonO">O</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;P&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonP">P</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;Q&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonQ">Q</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;R&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonR">R</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;S&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonS">S</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;T&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonT">T</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;U&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonU">U</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;V&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonV">V</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;W&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonW">W</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;X&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonX">X</a> &nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;Y&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonY">Y</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads beginning with a letter &quot;Z&quot;" id="ContentPlaceHolder1_Railroad1_LinkButtonZ">Z</a>&nbsp;
+         <a class="aspNetDisabled" title="Display all railroads in selected Reporting Level" id="ContentPlaceHolder1_Railroad1_LinkButtonAll">All</a> 
+         <br>
+    </td>
+    </tr>
+   <tr>
+   <td>
+      <select class="aspNetDisabled" title="Railroad" disabled="disabled" name="ctl00$ContentPlaceHolder1$Railroad1$rr1">
+	<option value="" selected="selected">All</option>
+
+</select> 
+        <br>
+   </td>
+   </tr>
+            
+    <tr>
+   <td>
+     <span class="aspNetDisabled"><input type="radio" disabled="disabled" checked="checked" value="SortByRailroadName" name="ctl00$ContentPlaceHolder1$Railroad1$SortByRailroadName" id="ContentPlaceHolder1_Railroad1_SortByRailroadName"><label for="ContentPlaceHolder1_Railroad1_SortByRailroadName">Sort by Railroad Name</label></span> 
+        <span class="aspNetDisabled"><input type="radio" onclick="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$Railroad1$SortByRailroadCode\',\'\')', 0)" disabled="disabled" value="SortByRailroadCode" name="ctl00$ContentPlaceHolder1$Railroad1$SortByRailroadCode" id="ContentPlaceHolder1_Railroad1_SortByRailroadCode"><label for="ContentPlaceHolder1_Railroad1_SortByRailroadCode">Sort by Railroad Code</label></span>
+   </td>
+   </tr>
+    <tr>
+    <td>
+         <select title="Railroad Groups" id="ContentPlaceHolder1_Railroad1_DropDownListRRGroups" name="ctl00$ContentPlaceHolder1$Railroad1$DropDownListRRGroups">
+	<option value="00">All Railroads</option>
+	<option value="10">CLASS 1 RAILROADS (Includes AMTRAK)</option>
+	<option value="11">CLASS 1 RAILROADS (Excludes AMTRAK)</option>
+	<option value="55">SWITCHING &amp; TERMINAL RAILROADS</option>
+	<option value="66">AMTRAK &amp; COMMUTER RAILROADS</option>
+	<option value="67">COMMUTERS ONLY (Excludes Amtrak)</option>
+	<option value="77">TOURIST, EXCURSION, HISTORICAL, ETC. RAILROADS</option>
+	<option value="78">FRA GROUP 2 RAILROADS, NOT CLASS 1, BUT LAST CY HOURS &gt;= 400,000</option>
+	<option value="79">FRA GROUP 3 RAILROADS, EMPLOYEE HOURS &lt; 400,000 A YEAR</option>
+	<option value="90">FREIGHT OPERATIONS, ONLY</option>
+	<option value="95">PASSENGER OPERATIONS, ONLY</option>
+
+</select>
+   
+    </td>
+    </tr>    
+    
+ </tbody></table>
+            </td>
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+            <td align="center" colspan="2">Choose a REGION or a STATE/COUNTY</td>
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+            <td>
+                <span style="display:inline-block;width:10em;" id="ContentPlaceHolder1_Label1">Region</span></td>
+            <td>
+                <select title="Regions" id="ContentPlaceHolder1_Regions1_DropDownListRegion" name="ctl00$ContentPlaceHolder1$Regions1$DropDownListRegion">
+	<option value="">All</option>
+	<option value="1">Region 1</option>
+	<option value="2">Region 2</option>
+	<option value="3">Region 3</option>
+	<option value="4">Region 4</option>
+	<option value="5">Region 5</option>
+	<option value="6">Region 6</option>
+	<option value="7">Region 7</option>
+	<option value="8">Region 8</option>
+
+</select>
+
+            </td>
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+            <td>
+                <span style="display:inline-block;width:10em;" id="ContentPlaceHolder1_Label6">State</span></td>
+            <td valign="top">
+                <select title="State County" id="ContentPlaceHolder1_Statecounty1_DropDownState" onchange="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$Statecounty1$DropDownState\',\'\')', 0)" name="ctl00$ContentPlaceHolder1$Statecounty1$DropDownState">
+	<option value="" selected="selected">All</option>
+	<option value="01">Alabama</option>
+	<option value="02">Alaska</option>
+	<option value="04">Arizona</option>
+	<option value="05">Arkansas</option>
+	<option value="06">California</option>
+	<option value="08">Colorado</option>
+	<option value="09">Connecticut</option>
+	<option value="10">Delaware</option>
+	<option value="11">District Of Columbia</option>
+	<option value="12">Florida</option>
+	<option value="13">Georgia</option>
+	<option value="15">Hawaii</option>
+	<option value="16">Idaho</option>
+	<option value="17">Illinois</option>
+	<option value="18">Indiana</option>
+	<option value="19">Iowa</option>
+	<option value="20">Kansas</option>
+	<option value="21">Kentucky</option>
+	<option value="22">Louisiana</option>
+	<option value="23">Maine</option>
+	<option value="24">Maryland</option>
+	<option value="25">Massachusetts</option>
+	<option value="26">Michigan</option>
+	<option value="27">Minnesota</option>
+	<option value="28">Mississippi</option>
+	<option value="29">Missouri</option>
+	<option value="30">Montana</option>
+	<option value="31">Nebraska</option>
+	<option value="32">Nevada</option>
+	<option value="33">New Hampshire</option>
+	<option value="34">New Jersey</option>
+	<option value="35">New Mexico</option>
+	<option value="36">New York</option>
+	<option value="37">North Carolina</option>
+	<option value="38">North Dakota</option>
+	<option value="39">Ohio</option>
+	<option value="40">Oklahoma</option>
+	<option value="41">Oregon</option>
+	<option value="42">Pennsylvania</option>
+	<option value="44">Rhode Island</option>
+	<option value="45">South Carolina</option>
+	<option value="46">South Dakota</option>
+	<option value="47">Tennessee</option>
+	<option value="48">Texas</option>
+	<option value="49">Utah</option>
+	<option value="50">Vermont</option>
+	<option value="51">Virginia</option>
+	<option value="53">Washington</option>
+	<option value="54">West Virginia</option>
+	<option value="55">Wisconsin</option>
+	<option value="56">Wyoming</option>
+	<option value="72">Puerto Rico</option>
+
+</select>&nbsp; 
+County
+<select title="State County" id="ContentPlaceHolder1_Statecounty1_DropDownListCounty" name="ctl00$ContentPlaceHolder1$Statecounty1$DropDownListCounty">
+	<option value="">All</option>
+
+</select>
+
+                </td>
+        </tr>
+      
+        <tr>
+            <th style="display: none;" scope="row"></th>
+            <td style="height: 3em; width: 16em;">
+                <span id="ContentPlaceHolder1_Label7">Type of Report Requested</span>
+             </td>
+             <td>
+             <select title="Report types" id="ContentPlaceHolder1_ReportType_dlCombinedYears" onchange="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$ReportType$dlCombinedYears\',\'\')', 0)" name="ctl00$ContentPlaceHolder1$ReportType$dlCombinedYears">
+	<option value="1" selected="selected">Calendar Year</option>
+	<option value="2">Fiscal Year</option>
+
+</select>
+        
+             </td>
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+             <td>
+                <span id="ContentPlaceHolder1_Label8">Start Month for Report</span>
+             </td>
+             <td>
+             <select title="Months" id="ContentPlaceHolder1_sMonth_eMonth" name="ctl00$ContentPlaceHolder1$sMonth$eMonth">
+	<option value="01" selected="selected">January</option>
+	<option value="02">February</option>
+	<option value="03">March</option>
+	<option value="04">April</option>
+	<option value="05">May</option>
+	<option value="06">June</option>
+	<option value="07">July</option>
+	<option value="08">August</option>
+	<option value="09">September</option>
+	<option value="10">October</option>
+	<option value="11">November</option>
+	<option value="12">December</option>
+
+</select>
+
+
+             </td>
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+             <td>
+                <span id="ContentPlaceHolder1_Label9">End Month for Report</span>
+             </td>
+             <td>
+             <select title="Months" id="ContentPlaceHolder1_eMonth_eMonth" name="ctl00$ContentPlaceHolder1$eMonth$eMonth">
+	<option value="01">January</option>
+	<option value="02">February</option>
+	<option value="03">March</option>
+	<option value="04">April</option>
+	<option value="05">May</option>
+	<option value="06">June</option>
+	<option value="07">July</option>
+	<option value="08">August</option>
+	<option value="09">September</option>
+	<option value="10">October</option>
+	<option value="11">November</option>
+	<option value="12" selected="selected">December</option>
+
+</select>
+
+
+             </td>
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+             <td>
+                <span id="ContentPlaceHolder1_Label10">Last Year for the Report</span>
+            </td>
+            <td>
+             
+            
+                <select title="Charts" id="ContentPlaceHolder1_inventoryYear1" name="ctl00$ContentPlaceHolder1$inventoryYear1">
+	<option value="2014" selected="selected">2014</option>
+	<option value="2013">2013</option>
+	<option value="2012">2012</option>
+	<option value="2011">2011</option>
+	<option value="2010">2010</option>
+	<option value="2009">2009</option>
+	<option value="2008">2008</option>
+	<option value="2007">2007</option>
+	<option value="2006">2006</option>
+	<option value="2005">2005</option>
+	<option value="2004">2004</option>
+	<option value="2003">2003</option>
+	<option value="2002">2002</option>
+	<option value="2001">2001</option>
+	<option value="2000">2000</option>
+	<option value="1999">1999</option>
+	<option value="1998">1998</option>
+	<option value="1997">1997</option>
+	<option value="1996">1996</option>
+	<option value="1995">1995</option>
+	<option value="1994">1994</option>
+	<option value="1993">1993</option>
+	<option value="1992">1992</option>
+	<option value="1991">1991</option>
+	<option value="1990">1990</option>
+	<option value="1989">1989</option>
+	<option value="1988">1988</option>
+	<option value="1987">1987</option>
+	<option value="1986">1986</option>
+	<option value="1985">1985</option>
+	<option value="1984">1984</option>
+
+</select>
+
+            </td>
+         
+
+          
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+            <td align="center" colspan="2">
+                <span style="font-weight:bold;" title="inventorydatelabel" id="ContentPlaceHolder1_Inventorydatelabel1_LabelDate">Accident/Incident data current through the end of September 30, 2014</span>
+
+            </td>
+        </tr>
+        <tr>
+            <th style="display: none;" scope="row"></th>
+           <td align="center" colspan="2" style="width: auto">
+                
+                <input type="button" style="width:135px;" title="Press Alt+R to generate report" accesskey="R" id="ContentPlaceHolder1_btn_SP" onclick="disableBtn(this.id, 'Processing...');__doPostBack('ctl00$ContentPlaceHolder1$btn_SP','')" value="Generate Report" name="ctl00$ContentPlaceHolder1$btn_SP">&nbsp;
+            <input type="submit" title="Press Alt+S to reset" accesskey="S" id="ContentPlaceHolder1_ButtonReset" value="Reset" name="ctl00$ContentPlaceHolder1$ButtonReset">
+               &nbsp;
+            </td>            
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <br>
+                <br>
+                <a href="../graphs.aspx">For graphical representation of national statistics, click here</a>
+            </td>
+        </tr>
+
+          <tr>
+          <td style="height: 2.5em" colspan="2">
+              &nbsp;</td>           
+        </tr>
+
+    </tbody></table>

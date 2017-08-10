@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Audit Report";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+@section header{
+<link type="text/css" rel="stylesheet" href="~/Core/Content/datatables/datatables.min.css" />
+    <style>
+        #report{
+            font-family: Arial,Helvetica,sans-serif;
+        }
+        #report .report-label{
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+            vertical-align: middle;
+        }
+        #generateReport{
+            margin-left: 0.5em;
+            padding-top: 0.16em;
+            padding-bottom: 0.16em;
+        }
+        #report .k-grid-toolbar{
+            padding: 0.6em 0em;
+        }
+        .toolbar{
+            margin-bottom: 15px;
+        }
+    </style>
+
+<script type="text/javascript" src="~/Core/Content/datatables/DataTables-1.10.13/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Core/Content/moment/moment.min.js"></script>
+    <script src="/Core/Scripts/cms/cms-panel-report.js" type="text/javascript"></script>
+}
+<div class="toolbar">
+    <label for="start" class="report-label">
+        Time Period:
+    </label>
+    <input type="text" id="start" title="Click to pick start date" />
+    <label for="end" class="report-label">to</label>
+    <input type="text" id="end" title="Click to pick end date" />
+    <input type="button" title="Click to generate report" value="Generate Report" id="generateReport" class="k-button" />
+</div>
+
+<table id="report">
+    <thead>
+        <tr>
+            <th>CMS User</th>
+            <th>Page Created</th>
+            <th>Page Published</th>
+            <th>eLib Created</th>
+            <th>eLib Published</th>
+        </tr>
+    </thead>
+</table>

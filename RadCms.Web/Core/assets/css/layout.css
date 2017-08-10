@@ -1,0 +1,164 @@
+﻿html, body{
+    height: 100%;
+}
+
+/*#bodyWrapper, #contentWrapper, #contentOneSource{
+    width: 100%;
+    height: 100%;
+    display: table;
+    border-collapse: collapse;
+}*/
+
+.main-container, .footer-container{
+    display: table-row;
+}
+
+.footer-container{
+    height: 200px;
+}
+.floatLeft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;/*	margin-right: 8px; */
+}
+
+/* ~~miscellaneous float/clear classes~~ */
+
+.floatRight {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;/*	margin-left: 8px; */
+}
+
+.clearFloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 0.083em;
+	line-height: 0px;
+}
+.accessible
+{
+    position: absolute;
+    display: block;
+    background-color: #FFFFFF;
+    color: #333!important;
+    text-decoration: none!important;
+    padding: 10px;
+    top: 55px;
+    left: -2000px;
+}
+.accessible:focus
+{
+    left: 10px;
+}
+.intro{
+	font-size:1.2em;
+}
+
+
+.floatLeft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;/*	margin-right: 8px; */
+}
+
+/* ~~miscellaneous float/clear classes~~ */
+
+.floatRight {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;/*	margin-left: 8px; */
+}
+
+.clearFloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 0.083em;
+	line-height: 0px;
+}
+.accessible
+{
+    position: absolute;
+    display: block;
+    background-color: #FFFFFF;
+    color: #555!important;
+    text-decoration: none!important;
+    padding: 10px;
+    top: 55px;
+    left: -2000px;
+}
+.accessible:focus
+{
+    left: 10px;
+}
+
+.clear-fix:after
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+/* ----------------------------------------------------------------------------------------------------------------------
+GLOBAL STYLES
+-------------------------------------------------------------------------------------------------------------------------*/
+
+.globalBackImage { /* This changes the background image for the entire website */
+
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------
+FOOTER STYLES
+-------------------------------------------------------------------------------------------------------------------------*/
+#footerWrapper {
+	padding-left: 13px;
+	padding-right: 13px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#footerWrapper a, #footerWrapper a.link, #footerWrapper a.visited{
+	color:#ccc;
+	text-decoration:none;	
+}
+
+#footerWrapper a:hover{
+	text-decoration:underline;	
+}
+
+#footerWrapper ul{
+    padding-left:0px;
+    margin:0px 15px 10px 15px;
+	color: #CCC;
+	line-height: 16px;
+}
+		
+#footerWrapper li{
+	list-style:none;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+		
+.footerTitle {
+	font-size:1.2em;
+	color: #CCC;
+	border-bottom: 1px double #666666;
+	text-transform: uppercase;
+	font-weight: lighter;
+	margin: 15px 0px 5px 0px;
+}
+#footerWrapper .horizontalSection li.footerItem{
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+}
+
+aside > div + div {
+    margin-top: 15px;
+}
+
+.layout-table{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.layout-table-row{
+    display: table-row;
+}
+
+.layout-table-cell{
+    display: table-cell;
+    height: 100%;
+}

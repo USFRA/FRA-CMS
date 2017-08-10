@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "FRA RADCMS";   
+}
+@section header {
+    <link href="/js/dojo/resources/dnd.css" rel="stylesheet" type="text/css" />
+    <link href="/js/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css" />
+    <link href="/css/app.css" rel="stylesheet" type="text/css" />
+    <!-- load dojo and provide config via data attribute -->
+    <script src="/js/dojo/dojo.js" data-dojo-config="async:true, parseOnLoad: true" type="text/javascript"></script>
+    <script type="text/javascript">
+        require({
+            baseUrl: "/js/",
+            tlmSiblingOfDojo: false,
+            packages: [
+                { name: "dojo", location: "dojo" },
+                { name: "dijit", location: "dijit" },
+                { name: "dojox", location: "dojox" },
+                { name: "app", location: "app" }
+            ]
+        }, ["app/main", "app/tree", "dijit/form/Button", "dijit/form/TextBox", "dojo/parser", "dojo/domReady!"],
+            function (App, Tree, Button, TextBox, parser) {
+                //App.start();
+
+                Tree.start();
+
+                //            var button = new Button({
+                //                label: "Edit",
+                //                onClick: function () {
+                //                    console.debug("First button was clicked!");
+                //                }
+                //            }, "btnEditPage");
+
+                //            var button = new Button({
+                //                label: "Save",
+                //                onClick: function () {
+                //                    console.debug("First button was clicked!");
+                //                }
+                //            }, "btnSavePage");
+
+                //button.startup();
+            });
+    </script>
+
+    <style type="text/css">
+           /*
+           .claro .myPane 
+           {
+               padding:0px;
+               margin:0px;
+           }
+           */
+           
+           .claro .myPane 
+           {
+               overflow:hidden;
+           }
+    </style>
+}
+<div class="claro" style="height:700px">
+<div id="appLayout" class="demoLayout" data-dojo-type="dijit.layout.BorderContainer"
+    data-dojo-props="design: 'headline'">
+    <div class="edgePanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'top'">    
+        <div id="edit-page">
+        </div>
+        <div id="add-new-child">
+        </div>
+        <div id="remove-child">
+        </div>
+    </div>
+    <div id="leftCol" style="width:300px" class="edgePanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'left', splitter: true">
+        <div id="tree">
+        </div>
+        <div>
+        </div>
+    </div>
+    <div class="centerPanel" id="tabContainer" data-dojo-type="dijit.layout.TabContainer"
+        data-dojo-props="region: 'center', tabPosition: 'bottom'">
+    </div>
+    @*<div id="rightCol" class="edgePanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'right', splitter: true">
+        Sidebar content (right)</div>*@
+</div>
+</div>

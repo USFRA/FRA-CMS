@@ -1,0 +1,270 @@
+﻿@using RadCms.Entities
+@model RadCms.Core.Containers.Models.ActionBarModel
+
+@if(Model.AccessMode != PermissionType.Denied)//if (Model.AccessMode > Permission.PermissionType.Default)
+{
+
+    string alt = "";
+    string modifiedBy = "";
+    string modifiedDate = "";
+    string modifiedTime = "";
+    DateTime modified = Model.LastModified;
+    string stateMessage = "PUBLISHED THIS PAGE ON";
+    string afterDateMessage = "AT";
+    string colorCode = "green";
+    bool countTime = false;
+    string timeMessage = "1 SECOND";
+
+    if (Model.ModifiedBy != null)
+    {
+        modifiedBy = Model.ModifiedBy.Substring(6);
+        modifiedDate = modified.ToString("D");
+        modifiedTime = modified.ToShortTimeString();
+
+        alt = Model.ModifiedBy.Substring(6) + " at " + modified;
+        if(User.Identity.Name.Length >=6 && modifiedBy.Equals(User.Identity.Name.Substring(6), StringComparison.InvariantCultureIgnoreCase))
+        {
+            modifiedBy = "YOU";
+        }
+    }
+
+    switch (Model.Status)
+    {
+        case RadCms.Entities.CmsPage.STATUS_CHANGE_SAVED:
+            colorCode = "yellow";
+            stateMessage = "SAVED THIS DRAFT ON";
+
+            break;
+        case RadCms.Entities.CmsPage.STATUS_EDITING_START:
+        case RadCms.Entities.CmsPage.STATUS_EDITING_AGAIN:
+            colorCode = "redStart";
+            stateMessage = "HAVE BEEN EDITING THIS PAGE FOR";
+            countTime = true;
+            break;
+        case RadCms.Entities.CmsPage.STATUS_EDITING_BY_OTHERS:
+            colorCode = "redAgain";
+            stateMessage = "STARTED EDITING THIS PAGE";
+            var editingSpan = DateTime.Now - Model.LastModified;
+            var editingDays = editingSpan.Days;
+            var editingHours = editingSpan.Hours;
+            var editingMins = editingSpan.Minutes;
+
+            timeMessage = (editingDays > 0 ? (editingDays + " DAY" + (editingDays > 1 ? "S" : "")) : (editingHours > 0 ? (editingHours + " HOUR" + (editingHours > 1 ? "S" : "")) : (editingMins > 0 ? (editingMins + " MINUTES") : "1 MINUTE")));
+            afterDateMessage = "AGO";
+
+            String userName = null;
+            if (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.User != null)
+            {
+                userName = System.Web.HttpContext.Current.User.Identity.Name.ToUpper();
+            }
+            else
+            {
+                if (Model.AccessMode >= PermissionType.Create)
+                {
+    <a href="#" id="unlockBtn" onclick="unlock();return false">EDIT LOCKED</a>
+                }
+                else if (Model.AccessMode >= PermissionType.Edit)
+                {
+    <a href="#" id="unlockBtn" onclick="return false">EDIT LOCKED</a>
+                }
+            }
+            break;
+        case RadCms.Entities.CmsPage.STATUS_ARCHIVED:
+            colorCode = "grey";
+            break;
+        case RadCms.Entities.CmsPage.STATUS_NORMAL:
+        default:
+            stateMessage = "PUBLISHED THIS PAGE ON";
+            break;
+    }
+
+    <div id="statusToolBar" style="background-image: url('@Url.Content("~/Core/assetsCms/images/homeButton.png")'); background-position: right center; background-repeat: no-repeat;">
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var True = true;
+        var False = false;
+        var countTime = @(countTime);
+        var items;
+        var status = "@colorCode";
+        switch (status) {
+            case "yellow":
+                items = [{
+                    template: '<span class="cms-status cms-status-yellow" title="Yellow Status - @(alt)"></span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">DRAFT</span>'
+                },
+                {
+                    template: '<span class="cms-icon cms-icon-draft"></span>'
+                },
+                {
+                    template: '<div class="cms-horizontal-divider"></div>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-yellow">@modifiedBy.ToUpper()</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@stateMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-yellow">@modifiedDate.ToUpper()</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@afterDateMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-yellow">@modifiedTime.ToUpper()</span>'
+                }
+                ];
+
+                break;
+            case "redStart":
+                items = [{
+                    template: '<span class="cms-status cms-status-red" title="Red Status - @(alt)"></span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">EDIT</span>'
+                },
+                {
+                    template: '<span class="cms-icon cms-icon-lock"></span>'
+                },
+                {
+                    template: '<div class="cms-horizontal-divider"></div>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-red">YOU</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@stateMessage</span>'
+                },
+                {
+                    template: '<span id="editingTime" class="cms-edit-message message-state-red">@timeMessage</span>'
+                }
+                ];
+
+                break;
+            case "redAgain":
+                items = [{
+                    template: '<span class="cms-status cms-status-red" title="Red Status - @(alt)"></span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">EDIT</span>'
+                },
+                {
+                    template: '<span class="cms-icon cms-icon-lock"></span>'
+                },
+                {
+                    template: '<div class="cms-horizontal-divider"></div>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-red">@modifiedBy.ToUpper()</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@stateMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-red">@timeMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@afterDateMessage</span>'
+                }
+                ];
+
+                break;
+            case "grey":
+                items = [{
+                    template: '<span class="cms-status cms-status-grey" title="Grey Status - @(alt)"></span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">LAST PUBLISHED</span>'
+                },
+                {
+                    template: '<span class="cms-icon cms-icon-archived"></span>'
+                },
+                {
+                    template: '<div class="cms-horizontal-divider"></div>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-grey">@modifiedBy.ToUpper()</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@stateMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-grey">@modifiedDate.ToUpper()</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@afterDateMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-grey">@modifiedTime.ToUpper()</span>'
+                }];
+                break;
+            case "green":
+            default:
+                items = [{
+                    template: '<span class="cms-status cms-status-green" title="Green Status@(alt)"></span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">LIVE</span>'
+                },
+                {
+                    template: '<span class="cms-icon cms-icon-live"></span>'
+                },
+                {
+                    template: '<div class="cms-horizontal-divider"></div>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-green">@modifiedBy.ToUpper()</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@stateMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-green">@modifiedDate.ToUpper()</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message">@afterDateMessage</span>'
+                },
+                {
+                    template: '<span class="cms-edit-message message-state-green">@modifiedTime.ToUpper()</span>'
+                }
+                ];
+
+                break;
+        };
+        $('#statusToolBar').kendoToolBar({
+            resizable: false,
+            items: items
+        });
+
+        if(countTime){
+            var seconds = 2;
+            var mins = 0;
+            var hours = 0;
+            var timer = setInterval(
+                function() {
+                    if(seconds == 60){
+                        seconds = 0;
+                        mins++;
+                    }
+                    if(mins == 60){
+                        mins = 0;
+                        hours++;
+                    }
+                    if(hours == 24){
+                        clearInterval(timer);
+                        $('#editingTime').text("MORE THAN A DAY");
+                    }
+                    else{
+                        $('#editingTime').text((hours > 0? (hours + " HOUR" + (hours == 1? "" : "S") + ", "):"") + (mins > 0? (mins + " MINUTE"+(mins == 1? "":"S")+", "):"") + seconds + ' SECOND' + (seconds == 1?"" : "S"));
+                        seconds++;
+                    }
+                }, 1000
+            );
+        }
+    });
+</script>
+}

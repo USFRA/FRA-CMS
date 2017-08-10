@@ -1,0 +1,76 @@
+﻿@model RadCms.Web.Areas.Comment.Entities.Comment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Comment</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">Comment</div>
+    <div class="display-field">
+        @Html.Raw(Model.Content)
+    </div>
+    <div class="display-label">Original Comment</div>
+    <div class="display-field">
+        @Html.Raw(Model.OrigContent)
+    </div>
+
+
+    <div class="display-label">Status</div>
+    <div class="display-field">
+        @Html.DropDownListFor(modelItem => modelItem.Status,
+                        new SelectList(
+                            new Dictionary<string, int> { 
+                                {"ACTIVE", 1},
+                                {"DELETED", 0},
+                                {"PENDING", -1}
+                            },
+                            "Value",
+                            "Key",
+                            Model.Status
+                        ))
+    </div>
+
+    <div class="display-label">Page</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PageId)
+    </div>
+
+    <div class="display-label">CreatedBy</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+
+    <div class="display-label">Created</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Created)
+    </div>
+    <div class="display-label">ModifiedBy</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ModifiedBy)
+    </div>
+
+    <div class="display-label">Modified</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Modified)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

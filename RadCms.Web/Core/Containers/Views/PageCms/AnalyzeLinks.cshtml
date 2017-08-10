@@ -1,0 +1,45 @@
+﻿@using RadCms.Helpers
+@using RadCms.Data
+
+@model List<RadCms.Entities.CmsPage>
+@{
+    ViewBag.Title = "Page Connections";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+}
+@section header{
+    @Styles.Render("~/common/main")
+    <style>
+        #relationships{
+            margin: 20px 0;
+        }
+        .breadcrumbWrapper{
+            line-height: 25px;
+        }
+        h2
+        {
+            margin: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('a').click(function (e) {
+                e.preventDefault();
+            })
+        });
+    </script>
+}
+<h2>CURRENT PAGE</h2>
+@*@Html.Raw(WebpartHelper.BreadcrumbWebPart(new CmsContext(), ViewBag.ThisPage.Id, ViewBag.ThisPage.NaviNode))*@
+<img id="relationships" src="@Url.Content("~/Core/assetsCms/images/relationships.gif")" alt="Relationships" />
+@if (Model.Count == 0)
+{
+<h2>THERE ARE NO PAGES LINKING TO IT</h2>
+}
+else
+{
+<h2>PAGES LINKING TO IT</h2>
+    foreach (var p in Model)
+    { 
+        @*@Html.Raw(WebpartHelper.BreadcrumbWebPart(new CmsContext(), p.Id, p.NaviNode))*@
+    }
+}

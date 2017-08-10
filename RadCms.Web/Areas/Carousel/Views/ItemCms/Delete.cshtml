@@ -1,0 +1,38 @@
+﻿@model RadCms.Entities.Carousel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Carousel</legend>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">SlideId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SlideId)
+    </div>
+
+    <div class="display-label">Visible</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Visible)
+    </div>
+
+    <div class="display-label">SlideContent</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SlideContent)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index", "Item", new { area="RadCms.Carousel"})
+    </p>
+}

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "PermissionGranted";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+    int roleId = (int)ViewBag.RoleId;
+}
+@using RadCms.Helpers
+@section header{
+    <script type="text/javascript">
+        function managePermission() {
+            window.location.href = "/Permission/permissionCms/manage";
+
+        }
+    </script>
+}
+<div id="cmsHomeHeader">
+    <div id="cmsUser">
+        <span class="welcomeUser">Welcome @Html.FormatName(User.Identity.Name.ToUpper())!</span><br />
+        @if (roleId >= 1)
+        {
+            <span class="userType">You are a web administrator</span>
+        }
+    </div>
+    <img height="41" width="154" src="/Core/assetscms/images/cmsHomeLogo.png" alt="Logo" />
+</div>
+<div class="portletOne">
+    <h2>
+        Permission Granted</h2>
+    <div>
+        <p>
+            <input type="button" onclick="history.go(-1)" value="Go Back" />
+        </p>
+    </div>
+</div>

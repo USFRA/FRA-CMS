@@ -1,0 +1,90 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Core/assetsCms/css/cms.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Areas/NavigationBar/assets/editor.css")" rel="stylesheet" type="text/css" />
+    
+    @Styles.Render("~/kendo/css")
+    @Scripts.Render("~/common/js", "~/bundles/jqueryval", "~/kendo/web/js")
+
+    <script>
+        $(document).ready(function () {
+            $('.editable').attr('contentEditable', 'true');
+            $(".editable").kendoEditor({
+                tools: [
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strikethrough",
+                    "justifyLeft",
+                    "justifyCenter",
+                    "justifyRight",
+                    "justifyFull",
+                    "insertUnorderedList",
+                    "insertOrderedList",
+                    "indent",
+                    "outdent",
+                    "createLink",
+                    "unlink",
+                    "insertImage",
+                    "subscript",
+                    "superscript",
+                    "createTable",
+                    "addRowAbove",
+                    "addRowBelow",
+                    "addColumnLeft",
+                    "addColumnRight",
+                    "deleteRow",
+                    "deleteColumn",
+                    "viewHtml",
+                    "formatting",
+                    "fontName",
+                    "fontSize",
+                    "foreColor",
+                    "backColor"
+                ]
+            });
+
+            $("form").on("submit", function (e) {
+
+
+                var form = $(this);
+                var content = $('#contentHTML').html();
+
+                $("<input type='hidden' />")
+                    .attr("name", "content")
+                    .val(content)
+                    .appendTo(form);
+            });
+
+            $("#SaveChange").click(function (event) {
+                event.preventDefault();
+                $('#submitChange').click();
+                return false;
+            });
+
+            $("#CancelChange").click(function (event) {
+                event.preventDefault();
+                $('#actForm').submit();
+                return false;
+            });
+        })
+
+    </script>
+    @RenderSection("header", required: false)
+</head>
+<body>   
+<div id="cmsBar">
+    <div id="cmsBarContent">
+        <div id="cmsButtons"> 
+         @RenderSection("cmsButtons", required: false)
+        <div style="clear:both"></div>
+        </div>
+    </div>
+</div>
+@RenderBody()
+</body>
+</html>

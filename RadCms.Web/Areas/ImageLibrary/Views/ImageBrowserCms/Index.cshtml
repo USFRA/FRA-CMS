@@ -1,0 +1,59 @@
+﻿@model IList<RadCms.Entities.Media>
+@{
+    ViewBag.Title = "Index";
+}
+@section header{
+    @Styles.Render("~/Areas/ImageLibrary/assets/imagebrowser.css")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @Scripts.Render("~/common/js")
+    @Scripts.Render("~/Areas/ImageLibrary/assets/jquery.iframe-transport.js")
+    @Scripts.Render("~/Core/assetsCms/tinymce/tinymce.min.js")
+    @Scripts.Render("/Areas/ImageLibrary/assets/imagebrowser.js")
+}
+
+<div class="frame-content-wrapper">
+
+    <div class="file-list-wrapper">
+        @if (Model.Count == 0)
+        {
+            <text>The library is empty. </text>
+        }
+        else
+        {
+            <ul>
+                @foreach (var m in Model)
+                {
+                    <li>
+                        <div class="cms-thumb">
+                            <img src="/imagelibrary/imagebrowsercms/Thumbnail?path=@(m.NaviNodeId + "/" + m.Title)" />
+                        </div>
+                        <strong>@m.File.FileName</strong>
+                        <span class="cms-filesize">@RadCms.Helpers.HtmlHelpers.GetSizeReadable((uint)m.File.FileSize)</span>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>   
+<div class="browser-footer">
+    <form id="uploadForm" method="post" enctype="multipart/form-data" action="/imagelibrary/imagebrowsercms/upload">
+        <input type="hidden" name="path" value="@ViewBag.NodeId" />
+        
+        <div class="btn container">
+            <button id="cancelBtn" type="button" class="container">
+                <span>Cancel</span>
+            </button>
+        </div>
+        <div class="btn container">
+            <button id="insertBtn" type="button" class="container">
+                <span>Insert</span>
+            </button>
+        </div>
+        <div class="btn container">
+            <label for="fileUpload" class="container">
+                <input type="file" name="file" id="fileUpload" />
+                <span>Upload</span>
+            </label>
+        </div>
+    </form>
+</div>

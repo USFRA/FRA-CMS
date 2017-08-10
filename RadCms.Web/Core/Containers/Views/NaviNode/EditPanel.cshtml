@@ -1,0 +1,128 @@
+﻿@model RadCms.Core.Containers.Models.EditNaviNodeModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Core/Views/Shared/_LayoutEditPanel.cshtml";       
+}
+@section header{
+    <script type="text/javascript">
+        $(function () {
+            //attach autocomplete  
+            $("#ParentId").autocomplete({
+
+                //define callback to format results  
+                source: function (req, add) {
+                    //alert(req);
+                    //pass request to server  
+                    $.getJSON("/ContentTree/TreeCms/Find", req, function (data) {
+                        //alert(data);
+                        //create array for response objects  
+                        var suggestions = [];
+
+                        //process response  
+                        $.each(data, function (i, val) {
+                            suggestions.push(val);
+                        });
+
+                        //pass array to callback  
+                        add(suggestions);
+                    });
+                },
+
+                //define select handler  
+                select: function (e, ui) {
+
+                    //create formatted friend  
+                    var friend = ui.item.value,
+                    span = $("<span>").text(ui.item.label),
+                    a = $("<a>").addClass("remove").attr({
+                        href: "javascript:",
+                        title: "Remove " + friend
+                    }).text("x").appendTo(span);
+
+                    //add friend to friend div  
+                    span.insertBefore("#ParentId");
+
+                    $("#ParentId").hide();
+                },
+
+                //define select handler  
+                change: function (event, ui) {
+                    //alert('abc');
+                    //prevent 'to' field being updated and correct position  
+                    //$("#btParent").val("").css("top", 2);
+                    //$("#btParent").hide();
+                }
+            });
+        });
+
+
+        //add live handler for clicks on remove links
+        $(".remove", document.getElementById("friends")).live("click", function () {
+
+            //remove current friend
+            $(this).parent().remove();
+
+            //correct 'to' field position
+            if ($("#friends span").length === 0) {
+                //$("#to").css("top", 0);
+                $("#ParentId").show();
+            }
+        });	
+       
+    </script>
+    <style type="text/css">
+        #ParentId
+        {
+            width: 200px;
+            margin: 0 0 2px 0;
+            padding: 0 0 3px;
+            position: relative;
+            top: 0;
+            float: left;
+            border: none;
+        }
+        
+        #friends
+        {
+            width: 274px;
+            padding: 3px 3px 0;
+            border: 1px solid #aaa;
+            background-color: #fff;
+            cursor: text;
+        }
+    </style>
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>NaviNode</legend>
+        @Html.HiddenFor(model => model.Id)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParentId)
+        </div>
+        <div class="editor-field">
+            <div id="friends" class="ui-helper-clearfix">
+                @Html.EditorFor(model => model.ParentId)
+                @Html.ValidationMessageFor(model => model.ParentId)
+            </div>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NodeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NodeName)
+            @Html.ValidationMessageFor(model => model.NodeName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DefaultPageId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DefaultPageId)
+            @Html.ValidationMessageFor(model => model.DefaultPageId)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

@@ -1,0 +1,18 @@
+﻿.col-1-4_iefix           { width: 22.75%; }
+.col-1-4_iefixNoPadding  { width: 27.25%; }
+
+.col-1-4_iefixFirst     { width: 25.75%; }
+.col-1-2_iefixMiddle    { width: 49.5%; }
+.col-1-4_iefixLast      { width: 24.75%; }
+
+
+.col-3-8_iefix            { width: 36.5%; }
+.col-3-16_iefixtNoPadding { width: 19.75%; }
+
+/* Broken out by 37 ++TITLE and PUBLICATION DATE ONLY++ */
+.col-43-250           { width: 18.95%; }               /* for PublicationDate  */ 
+.col-207-250          { width: 81.05%; }               /* for Title            */
+
+#metadataWrapper .text-box, #elibHeader .text-box {
+    overflow: visible;
+}

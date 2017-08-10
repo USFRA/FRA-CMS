@@ -1,0 +1,51 @@
+﻿@model RadCms.Core.Containers.Models.ActionBarModel
+@using RadCms.Entities;
+
+@{
+    var showRestore = false;
+    if (Model.AccessMode >= PermissionType.Edit){
+        showRestore = true;
+    }
+        
+}
+<div id="leftToolBar"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var items = [];
+        var False = false;
+        var True = true;
+        var showRestore = @showRestore;
+
+        items.push({
+            type: "button",
+            text: "CANCEL",
+            spriteCssClass: "cms-icon cms-icon-cancel",
+            overflow: 'never',
+            attributes: {"id":"cancelBtn"},
+            click: CMS.PAGE.cancelHistory
+        });
+        if(showRestore) {
+            items.push({
+                type: "button",
+                text: "RESTORE THIS PAGE",
+                spriteCssClass: "cms-icon cms-icon-restore",
+                overflow: 'never',
+                attributes: {"id":"restorePageBtn"},
+                click: restore
+            });
+        }
+        items.push({
+            type: "button",
+            text: "VIEW HISTORY",
+            spriteCssClass: "cms-icon cms-icon-history",
+            overflow: "never",
+            attributes: {"id": "viewHistoryBtn"},
+            click: CMS.PAGE.showHistory
+        });
+        $('#leftToolBar').kendoToolBar({
+            resizable: false,
+            items: items
+        });
+    });
+</script>

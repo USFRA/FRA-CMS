@@ -1,0 +1,20 @@
+﻿@model RadCms.Core.Containers.Models.ActionBarModel
+<div id="rightToolBar"></div>
+<script type="text/javascript">
+    var baseUrl = '@Url.Content("~/")';
+    $(document).ready(function () {
+        $('#rightToolBar').kendoToolBar({
+            items: [
+                {
+                    type: "button",
+                    text: "HELP",
+                    spriteCssClass: "cms-icon cms-icon-support",
+                    overflow: 'never',
+                    click: function () {
+                        window.location.href = baseUrl + "Contianers/CmsCms/Help";
+                    }
+                }
+            ]
+        });
+    });
+</script>

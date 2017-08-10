@@ -1,0 +1,47 @@
+﻿@using RadCms.Web.Areas.NavigationBar.Models
+@model RadCms.Entities.NavGroup
+@{
+    ViewBag.Title = "Items";
+}
+
+<h2>Nav Group - @Model.Title</h2>
+@Html.ActionLink("Add New Link", "AddItem", new { id = Model.Id, isGroup = false }) |
+@Html.ActionLink("Add New Group", "AddItem", new { id = Model.Id, isGroup = true }) |
+
+
+<table>
+<tr>
+    <th>
+        Index
+    </th>
+    <th>
+        Title
+    </th>
+    <th>
+        Type
+    </th>
+    <th></th>
+</tr>
+@foreach (MenuItem item in ViewBag.Items)
+{
+    var isGroup = item.Type == MenuItem.ItemType.Section;
+    <tr>
+        <td>
+            @item.MenuOrder
+        </td>
+        <td>
+            @item.Title
+        </td>
+        <td>
+            @(!isGroup ? "Link" : "Group")
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id, isGroup = isGroup }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id, isGroup = isGroup }) |
+            @if(isGroup){
+                @Html.ActionLink("Items", "Items", new { id = item.Id })
+            }
+        </td>
+    </tr>
+}
+</table>

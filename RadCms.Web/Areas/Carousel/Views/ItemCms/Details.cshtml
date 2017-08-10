@@ -1,0 +1,35 @@
+﻿@model RadCms.Entities.Carousel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Carousel</legend>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">SlideId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SlideId)
+    </div>
+
+    <div class="display-label">Visible</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Visible)
+    </div>
+
+    <div class="display-label">SlideContent</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SlideContent)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

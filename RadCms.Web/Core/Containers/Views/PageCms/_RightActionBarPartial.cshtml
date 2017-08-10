@@ -1,0 +1,120 @@
+﻿@model RadCms.Core.Containers.Models.ActionBarModel
+<div id="rightToolBar"></div>
+<script type="text/javascript">
+    var baseUrl = '@Url.Content("~/")';
+
+    $(document).ready(function () {
+        var accessMode = @((int)Model.AccessMode);
+        var pageType = "@(Model.Type.Title)";
+        var sectionType = "@(Model.SectionType.Title)"
+
+        var items = [];
+        if(accessMode > 0){
+            var menuButtons = [];
+
+            if(sectionType == "BLOG"){
+                menuButtons.push({
+                    id: "addnewpage",
+                    text: 'ADD NEW POST',
+                    spriteCssClass: "cms-icon cms-icon-add"
+                },{
+                    id: "movepage",
+                    text: "MOVE POSTS",
+                    spriteCssClass: "cms-icon cms-icon-move"
+                });
+            }
+            else{
+                menuButtons.push({
+                    id: "addnewpage",
+                    text: "ADD NEW PAGE",
+                    spriteCssClass: "cms-icon cms-icon-add"
+                },{
+                    id: "movepage",
+                    text: "MOVE PAGES",
+                    spriteCssClass: "cms-icon cms-icon-move"
+                });
+            }
+
+            menuButtons.push({
+                id: "showversion",
+                text: "HISTORY",
+                spriteCssClass: "cms-icon cms-icon-history"
+            },
+            {
+                id: "showrelationships",
+                text: "RELATIONSHIPS",
+                spriteCssClass: "cms-icon cms-icon-relationships"
+            });
+
+            if(pageType == "BLOG" || pageType == "BLOG HOME"){
+                menuButtons.push({
+                    id: "unpublishpage",
+                    text: "UNPUBLISH THIS POST",
+                    spriteCssClass: "cms-icon cms-icon-unpublish"
+                },{
+                    id: "deletepage",
+                    text: "DELETE THIS POST",
+                    spriteCssClass: "cms-icon cms-icon-delete"
+                });
+            }
+            else{
+                menuButtons.push({
+                    id: "unpublishpage",
+                    text: "UNPUBLISH THIS PAGE",
+                    spriteCssClass: "cms-icon cms-icon-unpublish"
+                },{
+                    id: "deletepage",
+                    text: "DELETE THIS PAGE",
+                    spriteCssClass: "cms-icon cms-icon-delete"
+                });
+            }
+
+            items.push({
+                type: "splitButton",
+                text: (sectionType == "BLOG" || sectionType == "BLOG HOME")? "MANAGE POSTS": "MANAGE PAGES",
+                click: function (e) {
+                    var tab = 1;
+                    switch (e.id) {
+                        case "addnewpage":
+                            tab = 1;
+                            break;
+                        case "unpublishpage":
+                            CMS.PAGE.unpublish();
+                            return;
+                        case "deletepage":
+                            CMS.PAGE.deletePage();
+                            return;
+                        case "movepage":
+                            tab = 2;
+                            break;
+                        case "showversion":
+                            tab = 3;
+                            break;
+                        case "showrelationships":
+                            tab = 4;
+                            break;
+                        default:
+                            tab = 1;
+                            break;
+                    }
+                    CMS.showPopup({ content: baseUrl + "Containers/pagecms/manage/@(Model.Id)?tab=" + tab, iframe: true, width: 1000, height: 700, title: false });
+                },
+                menuButtons: menuButtons,
+                overflow: 'never'
+            });
+        }
+        items.push({
+            type: "button",
+            text: "PANEL",
+            spriteCssClass: "cms-icon cms-icon-settings",
+            overflow: 'never',
+            click: function () {
+                CMS.showPopup({ content: baseUrl + "Containers/cmscms/index", iframe: true, width: 1000, height: 700, title: false });
+            }
+        });
+        $('#rightToolBar').kendoToolBar({
+            resizable: false,
+            items: items
+        });
+    });
+</script>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<RadCms.Entities.PageLayout>
+<style type="text/css">
+    #layoutList .layoutOption
+    {
+        border-style: solid;
+        border-color: transparent;
+        border-width: 3px;
+        display: inline-block;
+        position: relative;
+        float: left;
+        margin: 10px;
+        padding-top: 3px;
+        background-color: #808080;
+        color: #ffffff;
+        display: block;
+        height: 220px;
+        text-align: center;
+        width: 177px;
+    }
+    #layoutList .layoutOption input[type=radio]
+    {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #layoutList .layoutOption img{
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        width: 177px;
+    }
+    #layoutList .layoutOption.selected
+    {
+        border-color: #ef9595;
+    }
+    #selectLayoutBtn
+    {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+</style>
+<div>
+    <p>
+        Click on one of the following layout image and click done to create a new page with selected layout option.
+    </p>
+</div>
+<div id="layoutList">
+    @foreach (var l in Model)
+    {
+        <label for="layout@(l.Id)" class="layoutOption" data-id="@l.Id">
+            @if(l.Title=="BLOG")
+            {
+                <span>BLOG POST</span>
+            }
+             else if(l.Title=="BLOG HOME")
+            {
+             <span>BLOG CATEGORY</span>
+            }
+            else
+            {
+               @l.Title  
+            }
+            <input id="layout@(l.Id)" type="radio" name="layoutOption" />
+            <img src="@Url.Content("~/Template/layoutcms/image/" + @l.Id)" alt="@l.Title" />
+        </label>
+    }
+</div>
+<input class="k-button k-primary" id="selectLayoutBtn" type="button" value="Add Page" />

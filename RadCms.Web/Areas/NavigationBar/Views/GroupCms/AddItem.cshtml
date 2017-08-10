@@ -1,0 +1,49 @@
+﻿@model RadCms.Entities.NavItem
+
+@{
+    ViewBag.Title = "AddItem";
+}
+
+<h2>AddItem</h2>
+
+@Scripts.Render("~/bundles/jqueryval")
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <input type="hidden" name="groupId" value="@Model.Group.Id" />
+    <fieldset>
+        <legend>NavItem</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Index)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Index)
+            @Html.ValidationMessageFor(model => model.Index)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Link)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Link)
+            @Html.ValidationMessageFor(model => model.Link)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Group", "Items", new { id = Model.Group.Id })
+</div>

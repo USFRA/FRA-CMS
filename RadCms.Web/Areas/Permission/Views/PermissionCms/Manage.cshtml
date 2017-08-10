@@ -1,0 +1,111 @@
+﻿@using RadCms.Entities
+@model IEnumerable<SelectListItem>
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+    RoleType roleId = ViewBag.RoleId;
+    string sectionId = Convert.ToString(ViewBag.SectionId);
+    string pageId = Convert.ToString(ViewBag.PageId);
+    string adName = Convert.ToString(ViewBag.AdName);
+    if (!String.IsNullOrWhiteSpace(adName))
+    {
+        adName = adName.Replace("\\", "\\\\");
+    }
+}
+@using RadCms.Helpers
+@section header{
+    <style type="text/css">
+        form {
+            font-family: Arial;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+        .k-button {
+            float: right;
+        }
+        .field {
+            padding: 0.5em 0;
+        }
+    </style>
+    <script type="text/javascript" src="/Core/Scripts/cms/permission.js"></script>
+    <script type="text/javascript">
+        var sectionId = "@(ViewBag.SectionId)";
+        var pageId = "@(ViewBag.PageId)";
+        var adName = "@(adName)";
+    </script>
+}
+<form action="@Url.Content("~/Permission/permissioncms/Change/")" method="post" id="form">
+<div class="field" id="user">
+    <label for="userId">
+        User:</label>
+    <select class="input" id="userId" style="width: 30%;" name="userId">
+        <option value="">Select...</option>
+        @foreach (SelectListItem u in ViewBag.Users)
+        {
+            if (string.IsNullOrWhiteSpace(u.Text))
+            { 
+            <option value="@(u.Value)">@(u.Value)</option>
+            }
+            else
+            {
+            <option value="@(u.Value)">@(u.Text)</option>
+            }
+        }
+    </select>
+    <input class="k-textbox" type="text" style="width: 25%; margin-left: 5px;" value="addot\"
+        name="userName" id="userName" />
+    <button type="button" id="showUserPermissions" class="k-button">
+        View Permissions</button>
+    <span id="userMessage"></span>
+</div>
+<div class="field" id="section">
+    <label for="sectionId">
+        Section:</label>
+    <select id="sectionId" name="sectionId" style="width: 30%;">
+        <option value="">Section...</option>
+        @foreach (SelectListItem u in Model)
+        {
+            if (u.Value == "1")
+            {
+            <option value="@(u.Value)">Entire Site</option>
+            }
+            else
+            {
+            <option value="@(u.Value)">@(u.Text)</option>
+            }
+        }
+    </select>
+    <button type="button" disabled name="showSectionPermissions" id="showSectionPermissions"
+        class="k-button">
+        View Permissions</button>
+</div>
+<div class="field" id="page" style="display: none;">
+    <div style="display: inline">
+    </div>
+    <input type="button" id="showPagePermissions" disabled="disabled" class="k-button"
+        value="View Permissions" /></div>
+<div class="field" id="permission">
+    <label for="accessMode">
+        Permission:</label>
+    <select id="accessMode" name="permission" style="width: 30%;">
+        @foreach (SelectListItem u in ViewBag.AccessModes)
+        {
+            if (roleId < RoleType.Admin && Convert.ToInt32(u.Value) > 3)
+            { }
+            else
+            {
+            <option value="@(u.Value)">@(u.Text)</option>
+            }
+        }
+    </select>
+    <input type="checkbox" name="overwrite" id="overwrite" value="true" />
+    <label for="overwrite">
+        Overwrite</label>
+    <button style="float: right;" class="k-button k-primary" id="setPermission" type="submit">
+        Set Permission</button>
+</div>
+<div id="permissionFrame">
+</div>
+</form>

@@ -1,0 +1,148 @@
+﻿@using RadCms.Entities
+@model CmsUser
+@{
+    ViewBag.Title = "UserPermissions";
+    Layout = "~/Core/Views/Shared/_LayoutCmsPopup.cshtml";
+    int roleId = (int)ViewBag.RoleId;
+    string adName = Model.AdName;        
+}
+@using RadCms.Helpers;
+@section header{
+    <style type="text/css">
+        #section, #page
+        {
+            float: left;
+            margin: 10px;
+            width: 40%;
+        }
+    </style>
+    <script type="text/javascript" src="/Core/Scripts/cms/access.js"></script>
+    <script type="text/javascript">
+        var userId = "@(Model.Id)";
+    </script>
+}
+<div>
+    <div class="portletOne">
+        <h2>@Model.UserName
+        </h2>
+        <input type="checkbox" name="isAdmin" id="isAdmin"  value="1"  @(Model.RoleId >= RoleType.Super ? "checked=\"checked\"" : "")/>
+        <label for="isAdmin">
+            Administrator</label>
+        <input type="button" class='k-button' id="setAccess" value="Set Access" />
+
+        <div style="clear: both">
+        </div>
+    </div>
+    @if ((ViewBag.Page == null || ViewBag.Page.Count == 0) && (ViewBag.Navi == null || ViewBag.Navi.Count == 0))
+    {   
+        <div class="portletOne">
+            <p>
+                No Page or Section Permissions</p>
+            <div style="clear: both">
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="portletOne">
+            <h2>
+                Section Permissions</h2>
+            <div id="section">
+                @if (ViewBag.Navi == null || ViewBag.Navi.Count == 0)
+                {
+                    <p>
+                        No Section Permissions</p>
+                }
+                else
+                {
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Section Name
+                                </th>
+                                <th>
+                                    Permission
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var np in ViewBag.Navi)
+                            { 
+                                <tr>
+                                    <td>
+                                        <a href="/Permission/permissioncms/Manage?sectionId=@(np.Section.Id)&adName=@( adName)" target="_self">
+                                            @if ((int)np.Section.Id == 1)
+                                            {
+                                                <span>Entire Site</span>
+                                            }
+                                            else
+                                            {
+                                                @(np.Section.NodeName)
+                                            }
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Html.AccessMode((int)np.AccessMode)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>                  
+                }
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <div class="portletOne">
+            <h2>
+                Page Permissions</h2>
+            <div id="page">
+                @if (ViewBag.Page == null || ViewBag.Page.Count == 0)
+                {
+                    <p>
+                        No Page Permissions</p>
+                }
+                else
+                {         
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Page Name
+                                </th>
+                                <th>
+                                    Permission
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pp in ViewBag.Page)
+                            { 
+                                <tr>
+                                    <td>
+                                        <a href="/Permission/permissioncms/Manage?id=@(pp.Page.Id)&adName=@(adName)" target="_self">
+                                            @(pp.Page.Title)
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Html.AccessMode((int)pp.AccessMode)
+                                    </td>
+                                </tr>    
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+    }
+    <div class="portletOne clearFix">
+        <input type="button" class='k-button' onclick="history.go(-1)" value="Go Back" />
+        <input type="button" class='k-button' id="clearAccess" value="Clear All Permissions" />
+        <input type="button" class='k-button' id="removeAccess" value="Remove User" />
+        <div style="clear: both">
+        </div>
+    </div>
+</div>

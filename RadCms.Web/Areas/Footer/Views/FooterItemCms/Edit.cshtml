@@ -1,0 +1,85 @@
+﻿@model RadCms.Entities.FooterItem
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .horizontal, .vertical{
+        display: none;
+    }
+</style>
+@Scripts.Render("~/bundles/jqueryval")
+<script src="@Url.Content("~/Scripts/editor/footer-editor.js")" type="text/javascript" ></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Section)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("header", new SelectList(@ViewBag.Sections, @ViewBag.SectionTitle), new { @size = "7" })
+            @Html.ValidationMessageFor(model => model.Section)
+        </div>
+        <div>
+            <div class="vertical">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Title)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Title)
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+            </div>
+            <div class="horizontal">
+                <div class="editor-label">
+                    @Html.Label("Link icon")
+                </div>
+                <div class="editor-field">
+                    <textarea style="height: 100px; width: 100px;" class="cms-editable">@Model.Title</textarea>
+                </div>
+            </div>
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Link)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Link)
+            @Html.ValidationMessageFor(model => model.Link)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Target)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Target, new SelectList(@ViewBag.Targets, "Value", "Key", "Select a Section..."), new { @size = "4" })
+            @Html.ValidationMessageFor(model => model.Target)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Index)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Index)
+            @Html.ValidationMessageFor(model => model.Index)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsPublished)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsPublished)
+            @Html.ValidationMessageFor(model => model.IsPublished)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

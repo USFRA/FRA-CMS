@@ -1,0 +1,130 @@
+﻿@model RadCms.Core.Containers.Models.EditPageModel
+@{
+    var typeLabel = "Page";
+    var descriptionLabel = "PAGE DESCRIPTION";
+    if (Model.Type == "BLOG")
+    {
+        typeLabel = "Post";
+        descriptionLabel = "TAGS";
+    }
+}
+
+@Html.HiddenFor(model => model.NaviNodeId)
+@Html.HiddenFor(model => model.Layout)
+@Html.Hidden("Type", Model.Type)
+<div id="accordionWrapper">
+    <div id="metadataWrapperOne" class="k-state-active">
+        <div id="metadataWrapper">
+            <div id="leftMetaData">
+                <div class="metaDataField">
+                    <strong>@typeLabel Title</strong>&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Title)
+                    <div>
+                        @Html.TextBoxFor(model => model.Title, new { @class = "k-textbox" })
+                    </div>
+                </div>
+                <div class="metaDataField">
+                    <strong>URL</strong>&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.NaviTitle)
+                    <div>
+                        @Html.TextBoxFor(model => model.NaviTitle, new { @class = "k-textbox" })
+                    </div>
+                </div>
+            </div>
+            <div id="rightMetaData">
+                @if (Model.Layout !=8)
+                { 
+                <div class="metaDataField">
+                    <strong>@(Model.Type == "PAGE" ? "Keywords" : "Topics")</strong>&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Keywords)
+                    <div>
+                        @* TODO Hard Code Topics From RadCms.Blog.Helpers.Constans *@
+                        @Html.TextBoxFor(model => model.Keywords, new { @class = "autocomplete", data = string.Join(",", new string[]{
+                                "Drug & Alcohol",
+                                "Grade Crossing",
+                                "Hazmat",
+                                "Headquarters",
+                                "Motive Power & Equipment",
+                                "Operating Practices",
+                                "Signal & Train Control",
+                                "Track"
+                            })             
+                        })
+                    </div>
+                </div>
+                }
+                
+                <div class="metaDataField">
+                    <strong>@descriptionLabel</strong>&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Description)
+                    <div>
+                        @Html.TextBoxFor(model => model.Description, new { @class = "k-textbox" })
+                    </div>
+                </div>
+            </div>
+            @if ((bool)ViewData["IsAdmin"] && Model.Type == "PAGE")
+            {
+                <div id="htmlHeaderMetaData">
+                    <div class="metaDataField">
+                        <strong>HTML Header</strong>&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Header)
+                        <div>
+                            @Html.TextAreaFor(model => model.Header, new { @class = "k-textbox", style = "width: 100%; height:85px" })
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @Html.HiddenFor(model => model.Header)
+            }
+
+            @if (Model.Layout == 10)
+            {
+                <div id="htmlHeaderMetaData">
+                    <div class="metaDataField">
+                        <strong>Post Date</strong>&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Created)
+                        <div>
+                            @Html.TextBoxFor(model => model.Created, new { @class = "datetime" })
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.Type == "PAGE")
+            {
+                <div style="border-top: 1px solid #999; margin-top: 10px; padding-top: 10px;">
+                    <input id="isCreateNewSection" name="isCreateNewSection" value="1" type="checkbox" />
+                    <label for="isCreateNewSection">
+                        Save this page in its own section
+                    </label>
+                    <div id="newSectionMetaData">
+                        <div class="metaDataField">
+                            <label for="newSectionName">Section Name:</label>&nbsp;&nbsp;
+                            <input id="newSectionName" name="newSectionName" class="k-textbox" type="text" />
+                        </div>
+                    </div>
+                </div>
+            }
+            else if(Model.Layout == 10)
+            {
+                <div style="border-top: 1px solid #999; margin-top: 10px; padding-top: 10px;">
+                    <input id="IsCommentable" name="IsCommentable" value="true" type="checkbox" @(Model.IsCommentable ? "checked='checked'" : "") />
+                    <label for="IsCommentable">
+                        Does this post accept comments?
+                    </label>
+                </div>
+            }
+            <div style="clear: both">
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.Type == "BLOG")
+{
+    <div id="contenttwoSource">
+        @Html.Raw(Model.Summary)
+    </div>
+}
+
+<div id="contentOneSource">
+    @Html.Raw(Model.Content)
+</div>
+
+@Html.HiddenFor(model => model.Summary)
+@Html.HiddenFor(model => model.Content)

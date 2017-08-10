@@ -1,0 +1,53 @@
+﻿@model RadCms.Entities.NaviNode
+@{
+    ViewBag.Title = "Details";
+}
+<h2>
+    Details</h2>
+<fieldset>
+    <legend>NaviNode</legend>
+    @*<div class="display-label">
+        ParentId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentId)
+    </div>*@
+    <div class="display-label">
+        NodeName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NodeName)
+    </div>
+    <div class="display-label">
+        Default Page</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DefaultPageId)
+    </div>
+    <div class="display-label">
+        Breadcrumb</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Breadcrumb)
+    </div>
+    <div class="display-label">
+        CreatedBy</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+    <div class="display-label">
+        Created</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Created)
+    </div>
+    <div class="display-label">
+        ModifiedBy</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ModifiedBy)
+    </div>
+    <div class="display-label">
+        Modified</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Modified)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

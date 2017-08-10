@@ -1,0 +1,119 @@
+﻿@using RadCms.Helpers
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js gt-ie8">
+<!--<![endif]-->
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="The public homepage for the Federal Railroad Administration, an operating mode of the Department of Transportation." />
+    <meta name="keywords" content="Federal Railroad Administration, FRA, trains, train tracks, railroad crossing, freight railroading, passenger rail, tiger, arra, railroad safety, research &amp; development, grants, licenses, certificates" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="shortcut icon" href="@Url.Content("~/Core/favicon.ico")" type="image/vnd.microsoft.icon" />
+    <link rel="apple-touch-icon" href="@Url.Content("~/Core/assets/images/apple-touch-icon.png")" />
+    <link rel="apple-touch-icon" sizes="72x72" href="@Url.Content("~/Core/assets/images/apple-touch-icon-72x72.png")" />
+    <link rel="apple-touch-icon" sizes="114x114" href="@Url.Content("~/Core/assets/images/apple-touch-icon-114x114.png")" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" rel="stylesheet">
+    @Styles.Render(
+                "~/common/normalize",
+                "~/kendo/css",
+                "~/common/css",
+                "~/common/main",
+                "~/theme/css")
+
+    @if (CmsHelper.IsCms)
+    {
+        @Styles.Render("~/cms/css", "~/cms/sprites")
+    }
+    
+    <!--[if IE 8]><link href="/Core/assets/css/ie8.css"  rel='stylesheet' type='text/css' /><![endif]-->
+
+    @Scripts.Render(
+                "~/bundles/modernizr",
+                "~/common/js",
+                "~/kendo/web/js",
+                "~/plugins/js")
+    @RenderSection("header", required: false)
+</head>
+<body class="globalBackImage layout-table">
+    <a class="accessible" href="#mainPageContent">Skip to content</a>
+@if(CmsHelper.IsCms){
+    <div id="cmsHeaderPanel" class="layout-table-row">
+        <div id="cmsActionBar">
+            <div id="cmsActionContent" class="clear-fix">
+                <div id="leftActionBar">
+                    @RenderSection("leftActionBar", required: false)
+                </div>
+                <div id="rightActionBar">
+                    @RenderSection("rightActionBar", required: false)
+                </div>
+            </div>
+        </div>
+        <div id="cmsStatusBar">
+            <div id="cmsStatusContent">
+                @RenderSection("statusBar", required: false)
+            </div>
+        </div>
+    </div>
+}
+    <div id="bodyWrapper" class="layout-table-row">
+        <noscript>
+            <p style="border: 1px solid #666; background-color: White; padding: 10px; text-align: center">
+                <img src="@Url.Content("~/Core/assets/images/warning_error.png")" width="32" height="32" alt="Warning"
+                    style="vertical-align: middle" />
+                Your browser's JavaScript is not enabled. <a style="color: black" href="http://enable-javascript.com">
+                    Click here to learn how to enable JavaScript in your browser.</a>
+            </p>
+        </noscript>
+        <!--[if lt IE 8 ]>
+            <p style="border: 1px solid #666; background-color: White; padding: 10px; text-align: center">
+                You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience. 
+            </p>
+        <![endif]-->
+
+        <div class="layout-table-cell">
+            <div class="layout-table">
+                <div class="header-container layout-table-row">
+                    <div class="header-border">
+                        @*@if (CmsHelper.IsCms)
+                        {*@
+                            @Html.Partial("~/Core/themes/" + CmsHelper.Site + "/content/_HeaderTop.cshtml")
+                        @*}*@
+
+                        <header class="wrapper clearfix">
+                            <button id="navToggle" type="button" class="menu-button navbar-toggle collapsed">
+                                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
+                            <a href="/">
+                                <img id="logo" src="@Url.Content("~/Core/themes/" + CmsHelper.Site + "/images/logo.png")" alt="@CmsHelper.Site.ToUpper()" />
+                            </a>
+                        </header>
+                        <div id="headerBottom">
+                            <nav class="collapsed">
+                                @Html.GetHeaderNav(CmsHelper.IsCms)
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <section class="main-container layout-table-row">
+                    <div class="layout-table-cell">
+                        <a href="#" id="mainPageContent"></a>
+                        <div id="contentWrapper" class="clear-fix">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </section>
+
+                @Html.Partial("~/Core/themes/" + CmsHelper.Site + "/content/_Footer.cshtml")
+            </div>
+        </div>
+    </div>
+    <div style="display: none;" id="popupWin">
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿@model RadCms.Core.Containers.Models.ActionBarModel
+@{
+    bool isNewPage = false;
+    // Only put return url when it's create page mode.
+    if (!string.IsNullOrEmpty(Model.ReturnUrl))
+    {
+        isNewPage = true;
+    }
+}
+<div id="leftToolBar">
+</div>
+<div style="display: none">
+    @using (Html.BeginForm("Do", "PageCms", new { id = Model.Id }, FormMethod.Post, new { @id = "actForm" }))
+    {    
+        @Html.HiddenFor(model => model.Id)
+        @Html.Hidden("act", "cancel", new { @id = "act" });
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var items = [];
+        var False = false;
+        var True = true;
+        var isNewPage = @(isNewPage);
+        
+        items.push({
+            type: "button",
+            text: "SAVE MY CHANGES",
+            spriteCssClass: "cms-icon cms-icon-save",
+            overflow: 'never',
+            attributes: { "id": "saveBtn" },
+            click: saveChange
+        });
+        if(isNewPage){
+            items.push({
+                type: "button",
+                text: "CANCEL",
+                spriteCssClass: "cms-icon cms-icon-cancel",
+                overflow: 'never',
+                attributes: { "id": "cancelBtn" },
+                click: function(){
+                    window.location.href = "@(Model.ReturnUrl)";
+                }
+            });
+        }
+        else{
+            items.push({
+                type: "button",
+                text: "CANCEL",
+                spriteCssClass: "cms-icon cms-icon-cancel",
+                overflow: 'never',
+                attributes: { "id": "cancelBtn" },
+                click: cancelChange
+            });
+        }
+
+        $('#leftToolBar').kendoToolBar({
+            resizable: false,
+            items: items
+        });
+    });
+</script>

@@ -1,0 +1,60 @@
+﻿@model IPage
+@using RadCms.Helpers
+@using RadCms.Entities
+@using RadCms.Core.Containers.Models
+@{
+    ViewBag.Title = Model.Title + " | Federal Railroad Administration";
+    Layout = "~/Core/Views/Shared/_LayoutGlobalNew.cshtml";
+}
+@section header{
+    <link href="@Url.Content("~/layout/styles/" + Model.Layout)" type="text/css" rel="Stylesheet" />
+    @if(CmsHelper.IsCms){
+        <style type="text/css">
+            @Html.BackgroundStyle(Model.Status)
+            .header-container {
+                background-position: 0 100px;
+            }
+            #headerTop{
+                margin-top: 100px;
+            }
+        </style>
+        @Scripts.Render("~/Core/Scripts/cms/cms-comm.js", "~/Core/Scripts/cms/cmsPage.js")
+    }
+    <script type="text/javascript">
+        var currentPageId = "@(Model.Id)";
+        var sectionId = "@(Model.NaviNode.Id)";
+        var pageLayoutId = "@(Model.Layout)";
+    </script>
+    
+    @Html.Raw(Model.ContentHtml == null ? "" : Model.ContentHtml.Header)
+    @Html.Raw(ViewBag.WebpartHeaders)
+}
+@if(CmsHelper.IsCms)
+{
+    PermissionType accessMode = ViewBag.AccessMode;
+    //bool havingWebPart = true;
+    var actionViewModel = new ActionBarModel
+    {
+        Id = Model.Id,
+        IsPublished = Model.IsPublished,
+        Status = (Model.Status == CmsPageBase.STATUS_EDITING_START || Model.Status == CmsPageBase.STATUS_EDITING_AGAIN) ? CmsPage.STATUS_EDITING_BY_OTHERS : Model.Status,
+        SectionId = Model.NaviNode.Id,
+        ModifiedBy = Model.ModifiedBy,
+        LastModified = Model.Modified,
+        AccessMode = accessMode,
+        FriendlyId = Model.FriendlyId,
+        Type = Model.Type,
+        SectionType = Model.NaviNode.Type
+    };
+    @section leftActionBar{
+        @Html.Partial("~/Core/Containers/Views/PageCms/_LeftActionBarPartial.cshtml", actionViewModel)
+    }
+    @section rightActionBar{
+        @Html.Partial("~/Core/Containers/Views/PageCms/_RightActionBarPartial.cshtml", actionViewModel)
+    }
+    @section statusBar {
+        @Html.Partial("~/Core/Containers/Views/PageCms/_MessageBarPartial.cshtml", actionViewModel)
+    }
+}
+@Html.Raw(Model.ContentHtml.Content)
+

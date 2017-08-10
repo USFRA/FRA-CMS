@@ -1,0 +1,195 @@
+/*CMS Button Icon Images */
+.k-button .cms-icon
+{
+    margin-right: 5px;
+}
+.cms-icon
+{
+    background-image: url('images/cmsIcons.png');
+    background-repeat: no-repeat;
+    width: 20px!important;
+    height: 20px!important;
+}
+.cms-icon-edit {
+	background-position:0px 0px;
+}
+	
+.cms-icon-noEdit {
+	background-position:-20px 0px;
+}
+.cms-icon-save {
+	background-position:0px -20px;
+}
+.cms-icon-publish {
+	background-position:0px -40px;
+}
+.cms-icon-unpublish {
+	background-position:-20px -40px;
+}
+.cms-icon-delete {
+	background-position:0px -60px;
+}
+.cms-icon-cancel {
+	background-position:0px -80px;
+}
+.cms-icon-editdraft {
+	background-position:0px -100px;
+}
+.cms-icon-settings {
+	background-position:0px -120px;
+}
+.cms-icon-restore {
+	background-position:0px -140px;
+}
+.cms-icon-browse {
+	background-position:0px -160px;
+}
+.cms-icon-access {
+	background-position:0px -180px;
+}
+.cms-icon-history {
+	background-position:0px -200px;
+}
+.cms-icon-add {
+	background-position:0px -220px;
+}
+.cms-icon-support {
+	background-position:0px -240px;
+}
+.cms-icon-webpart {
+	background-position:0px -260px;
+}
+.cms-icon-noWebpart {
+	background-position:-20px -260px;
+}
+.cms-icon-relationships {
+	background-position:0px -280px;
+}
+.cms-icon-sitemap {
+	background-position:0px -300px;
+}
+.cms-icon-rename {
+	background-position:0px -320px;
+}
+.cms-icon-move {
+	background-position:0px -340px;
+}
+.cms-icon-live {
+	background-position:0px -360px;
+	display: inline-block;
+    vertical-align: middle;
+}
+.cms-icon-draft {
+	background-position:0px -380px;
+	display: inline-block;
+    vertical-align: middle;
+}
+.cms-icon-lock {
+	background-position:0px -400px;
+	display: inline-block;
+    vertical-align: middle;
+}
+.cms-icon-redirect {
+	background-position:0px -420px;
+}
+
+/*CMS Status Icons */
+.cms-status
+{
+    background-image: url('images/cmsStatus.png');
+    background-repeat: no-repeat;
+    width: 25px!important;
+    height: 25px!important;
+    display: inline-block;
+    vertical-align: middle;
+}
+.cms-status-green {
+	background-position:0px 0px;
+}
+
+.cms-status-red {
+	background-position:0px -25px;
+}
+
+.cms-status-yellow {
+	background-position:0px -50px;
+}
+
+.cms-status-grey {
+	background-position:0px -75px;
+}
+
+
+/*CMS Panel Icons */
+.cms-panel
+{
+    background-image: url('images/cmsPanel.png');
+    background-repeat: no-repeat;
+    width: 60px!important;
+    height: 60px!important;
+    vertical-align: middle;
+}
+.cms-panel-history {
+	background-position:0px 0px;
+}
+.cms-panel-favorites {
+	background-position:0px -60px;
+}
+.cms-panel-access {
+	background-position:0px -120px;
+}
+.cms-panel-reports {
+	background-position:0px -180px;
+}
+.cms-panel-apps {
+	background-position:0px -240px;
+}
+.cms-panel-drafts {
+	background-position:0px -300px;
+}
+
+.cms-state-active .cms-panel-history {
+	background-position:-60px 0px;
+}
+.cms-state-active .cms-panel-favorites {
+	background-position:-60px -60px;
+}
+.cms-state-active .cms-panel-access {
+	background-position:-60px -120px;
+}
+.cms-state-active .cms-panel-reports {
+	background-position:-60px -180px;
+}
+.cms-state-active .cms-panel-apps {
+	background-position:-60px -240px;
+}
+.cms-state-active .cms-panel-drafts {
+	background-position:-60px -300px;
+}
+
+
+.cms-panel-move {
+	background-position:0px -360px;
+}
+.cms-panel-move2 {
+	background-position:-120px -360px;
+}
+.cms-panel-add {
+	background-position:0px -420px;
+}
+.cms-panel-relationships {
+	background-position:0px -480px;
+}
+
+.cms-state-active .cms-panel-move {
+	background-position:-60px -360px;
+}
+.cms-state-active .cms-panel-move2 {
+	background-position:-180px -360px;
+}
+.cms-state-active .cms-panel-add {
+	background-position:-60px -420px;
+}
+.cms-state-active .cms-panel-relationships {
+	background-position:-60px -480px;
+}

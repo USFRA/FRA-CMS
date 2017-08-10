@@ -1,0 +1,126 @@
+﻿.comment
+{
+    font-family:Arial, Helvetica, sans-serif;
+    background-color:White;
+    margin: 25px auto 10px;
+    width:100%;
+}
+
+.comment h2
+{
+    color:#900;
+    background-color:transparent;
+    background-image:none;
+    border-bottom:1px solid #aaa;
+}
+
+.comment #comment
+{
+    width: 90%;
+}
+
+.comment input.input-validation-error
+{
+    background-color:#f8dbdb;
+    border:1px solid #e77776;
+}
+.comment span.error
+{
+    font-size:0.9em;
+    color:#e77776;
+}
+.comment textarea.error
+{
+    background-color:#f8dbdb;
+    border:1px solid #e77776;
+}
+.comment table.datatable
+{
+    border-collapse: collapse;
+    border: 1px solid #aaa;
+    margin: 12px auto 12px auto;
+    width: 500px;
+    
+}
+
+.comment .columnlabel
+{
+    border: 1px solid #aaa;
+    text-align:left;
+    padding:3px;
+}
+
+.comment .columncontent
+{
+    border: 1px solid #aaa;
+    text-align:left;
+    padding:5px 3px 15px 3px;
+}   
+
+.comment .rowblue
+{
+    background-color: #ddeeff;
+}
+
+.comment input[type=text]:focus, .webpart select:focus, .webpart textarea:focus
+{
+    border-color: #7f9db9;
+}
+.comment input[type=text], .webpart textarea, .webpart select
+{
+    padding: 0.4em 0.6em;
+    font-family: sans-serif;
+    display: inline-block;
+    border: #cccccc 1px solid;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+}
+.comment #Content
+{
+    vertical-align: top;
+    overflow: auto;
+}
+
+#recaptchaWrapper
+{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 90%;
+    min-height: 100px;
+    margin-top: 10px;
+}
+.commentFooter{
+    padding-top: 10px;
+}
+.button {
+    background: #e62117 none repeat scroll 0 0;
+    border: medium none;
+    color: white;
+}
+.button:hover {
+    background: #cc181e none repeat scroll 0 0;
+    color: white;
+}
+.field-validation-error{
+    color: red;
+    display:block;
+}
+
+article .k-widget li:before{
+    content: none;
+}
+
+.comment .columncontent+.columnlabel{
+    border-top: none;
+}
+.comment .columnlabel+.columncontent{
+    border-top: none;
+}
+.col-2-1, .col-2-2{
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
